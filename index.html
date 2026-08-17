@@ -819,6 +819,115 @@
         }
 
         /* =====================================================
+           LOCATION
+        ===================================================== */
+
+        .location {
+            padding: 115px 0;
+            background: white;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 0.82fr 1.18fr;
+            gap: 55px;
+            align-items: center;
+        }
+
+        .location-copy {
+            max-width: 470px;
+        }
+
+        .location-details {
+            display: grid;
+            gap: 13px;
+            margin: 27px 0 30px;
+        }
+
+        .location-detail {
+            display: flex;
+            gap: 13px;
+            align-items: flex-start;
+            padding: 14px 16px;
+            border: 1px solid var(--line);
+            border-radius: 15px;
+            background: #f8fafc;
+        }
+
+        .location-icon {
+            width: 36px;
+            height: 36px;
+            flex: 0 0 36px;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            color: white;
+            background: var(--navy);
+            font-size: 15px;
+        }
+
+        .location-detail strong {
+            display: block;
+            color: var(--navy);
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+
+        .location-detail span {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .location-map-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 28px;
+            background: #eef2f7;
+            box-shadow: var(--shadow-large);
+            border: 1px solid rgba(15, 23, 42, 0.06);
+        }
+
+        .location-map-card img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+        }
+
+        .location-map-caption {
+            position: absolute;
+            left: 18px;
+            bottom: 18px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            color: var(--navy);
+            background: rgba(255,255,255,0.94);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 25px rgba(15,23,42,0.12);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .location-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 17px;
+            border-radius: 999px;
+            color: white;
+            background: var(--navy);
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: 0 10px 25px rgba(11,22,40,0.15);
+            transition: all .25s ease;
+        }
+
+        .location-button:hover {
+            transform: translateY(-2px);
+            background: var(--blue);
+        }
+
+        /* =====================================================
            CTA
         ===================================================== */
 
@@ -958,6 +1067,11 @@
             .modules-grid {
                 grid-template-columns: 1fr;
             }
+
+            .location-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
         }
 
         @media (max-width: 720px) {
@@ -1074,6 +1188,27 @@
             }
         }
 
+
+        #location .container {
+            width: min(1180px, calc(100% - 44px));
+            margin: 0 auto;
+        }
+
+        #location img {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 25px;
+        }
+
+        .zoom-content h2,
+        #location .section-title {
+            font-size: 25px;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+        }
+
     </style>
 </head>
 
@@ -1104,6 +1239,9 @@
             <a href="#modules">Modules</a>
 
             <a href="#instructor">Instructor</a>
+
+            <a href="#zoom">Zoom</a>
+            <a href="#location">Location</a>
 
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSfhEyO4aouBG-yvZyfIX1FBNxvAKLkIdpN1lw-wQSUihdt1mg/viewform?usp=dialog" class="nav-button">
                 Reserve Your Place
@@ -1575,6 +1713,60 @@
 
     </div>
 
+</section>
+
+
+<!-- =====================================================
+     LOCATION
+===================================================== -->
+
+
+<!-- =====================================================
+     ZOOM ACCESS
+===================================================== -->
+
+<section class="zoom-access" id="zoom">
+
+    <div class="container">
+
+        <div class="zoom-card">
+
+            <div class="zoom-icon">↗</div>
+
+            <div class="zoom-content">
+                <div class="section-kicker">Online Access</div>
+
+                <h2>Join the Masterclass Online</h2>
+
+                <p>
+                    Can't attend in person? Join the session online using the
+                    Zoom link below.
+                </p>
+            </div>
+
+            <a
+                    href="https://us06web.zoom.us/j/81657247353?pwd=xTfBpnEk22o912EFPhHaU2aXLizF9X.1"
+                    class="button button-primary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+            >
+                Join via Zoom →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="location" id="location">
+    <div class="container">
+        <div class="section-kicker">Location</div>
+        <h2 class="section-title">University of Juba Computer Lab</h2>
+        <div class="location-image-placeholder">
+            <img src="images/location.jpg" alt="Training location map">
+        </div>
+    </div>
 </section>
 
 
