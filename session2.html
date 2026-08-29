@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Leadership Masterclass — Session 2</title>
+<style>
+:root {
+  --bg:#f6f8fb; --paper:#ffffff; --ink:#172033; --muted:#657086;
+  --navy:#1e293b; --blue:#2563eb; --cyan:#0891b2; --green:#047857;
+  --amber:#d97706; --red:#dc2626; --purple:#6d28d9;
+  --line:#dfe5ee; --shadow:0 18px 50px rgba(15,23,42,.10);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{min-height:100vh}
+button,a{font:inherit}
+.topbar{position:fixed;top:0;left:0;right:0;height:68px;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 22px;z-index:50}
+.brand{font-weight:800;letter-spacing:-.02em}
+.brand small{display:block;color:var(--muted);font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.controls{display:flex;gap:8px;align-items:center}
+.btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:9px 13px;border-radius:10px;cursor:pointer;font-weight:700;font-size:13px;transition:.2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(15,23,42,.08)}
+.btn.primary{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn.blue{background:var(--blue);color:#fff;border-color:var(--blue)}
+.btn.green{background:var(--green);color:#fff;border-color:var(--green)}
+.progress{position:fixed;top:67px;left:0;height:3px;background:var(--blue);width:10%;z-index:60;transition:.25s}
+main{padding-top:68px}
+.slide{display:none;min-height:calc(100vh - 68px);padding:58px 6vw 90px;max-width:1450px;margin:0 auto}
+.slide.active{display:block;animation:fade .28s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.kicker{color:var(--blue);font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:800;margin-bottom:10px}
+h1{font-size:clamp(36px,5vw,66px);line-height:1.02;letter-spacing:-.045em;margin:0 0 14px}
+h2{font-size:clamp(28px,3.5vw,46px);line-height:1.05;letter-spacing:-.035em;margin:0 0 14px}
+.subtitle{font-size:20px;color:var(--muted);max-width:850px;line-height:1.5}
+.grid{display:grid;gap:22px}
+.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow)}
+.card h3{margin:0 0 8px;font-size:19px}
+.card p,.card li{color:#445066;line-height:1.55}
+.tool{border-top:5px solid var(--blue)}
+.tool:nth-child(2){border-top-color:#16a34a}
+.tool:nth-child(3){border-top-color:#7c3aed}
+.tool:nth-child(4){border-top-color:#ea580c}
+.tool:nth-child(5){border-top-color:#0f766e}
+.tool strong{display:block;margin-bottom:4px}
+.table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.table th,.table td{padding:14px 15px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+.table th{background:#f8fafc;font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+.table td{font-size:14px;line-height:1.45}
+.pill{display:inline-block;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.04em}
+.green-pill{background:#dcfce7;color:#166534} .amber-pill{background:#fef3c7;color:#92400e} .red-pill{background:#fee2e2;color:#991b1b}
+.flow{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:30px 0}
+.flow .node{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-weight:800;box-shadow:0 8px 24px rgba(15,23,42,.06)}
+.arrow{font-size:22px;color:var(--blue);font-weight:900}
+.callout{border-left:5px solid var(--blue);background:#eef5ff;padding:17px 20px;border-radius:12px;margin:20px 0;font-weight:700}
+.warning{border-left-color:var(--amber);background:#fff8eb}
+.success{border-left-color:var(--green);background:#ecfdf5}
+.danger{border-left-color:var(--red);background:#fff1f2}
+.img-wrap{background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px;box-shadow:var(--shadow);margin-top:24px}
+.img-wrap img{width:100%;height:auto;display:block;border-radius:10px}
+.demo{margin-top:24px;border:2px solid #cbd5e1;border-radius:18px;background:#fff;overflow:hidden;box-shadow:var(--shadow)}
+.demo-head{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:15px 18px;background:#f8fafc;border-bottom:1px solid var(--line)}
+.demo-head strong{font-size:14px;text-transform:uppercase;letter-spacing:.08em}
+.demo-body{padding:20px}
+pre{white-space:pre-wrap;word-break:break-word;background:#0f172a;color:#e5e7eb;border-radius:12px;padding:17px;line-height:1.5;font-size:13px;max-height:310px;overflow:auto}
+.copy-row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px}
+.notes{display:none;background:#fffbe8;border:1px solid #f4d36b;padding:16px;border-radius:12px;margin-top:15px;color:#5b4300}
+.facilitator .notes{display:block}
+.two-col-demo{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.small{font-size:12px;color:var(--muted)}
+.exercise{background:#fff;border:2px dashed #94a3b8;border-radius:18px;padding:24px}
+.exercise-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:18px}
+.step{border:1px solid var(--line);border-radius:14px;padding:15px;background:#fff;min-height:140px}
+.step .num{font-size:12px;font-weight:900;color:var(--blue)}
+.step h4{margin:6px 0;font-size:15px}
+.step p{font-size:13px;color:var(--muted);line-height:1.4}
+.footer-nav{position:fixed;bottom:0;left:0;right:0;height:70px;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-top:1px solid var(--line);display:flex;align-items:center;justify-content:center;gap:12px;z-index:50}
+.slide-count{position:absolute;left:22px;color:var(--muted);font-size:12px;font-weight:800}
+.toc{position:fixed;right:18px;top:86px;z-index:45;display:flex;gap:6px;flex-direction:column}
+.dot{width:9px;height:9px;border-radius:50%;background:#cbd5e1;border:0;padding:0;cursor:pointer}
+.dot.active{background:var(--blue);transform:scale(1.35)}
+@media(max-width:900px){
+  .grid.two,.grid.three,.two-col-demo{grid-template-columns:1fr}
+  .exercise-grid{grid-template-columns:1fr 1fr}
+  .topbar{padding:0 12px} .brand small{display:none}
+  .slide{padding:42px 22px 95px}
+}
+@media(max-width:600px){
+  .exercise-grid{grid-template-columns:1fr}
+  .controls .btn:nth-child(2){display:none}
+  .toc{display:none}
+}
+
+#accessGate{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(circle at 20% 20%,rgba(37,99,235,.10),transparent 32%),radial-gradient(circle at 80% 80%,rgba(8,145,178,.09),transparent 32%),#f6f8fb}
+#accessGate.hidden{display:none}.access-card{width:min(520px,100%);background:#fff;border:1px solid var(--line);border-radius:24px;padding:42px;box-shadow:0 30px 80px rgba(15,23,42,.14);text-align:center}.access-mark{width:62px;height:62px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;border-radius:18px;background:var(--navy);color:#fff;font-size:25px;font-weight:900}.access-card .eyebrow{color:var(--blue);font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.15em;margin-bottom:10px}.access-card h1{font-size:34px;line-height:1.05;margin:0 0 8px}.access-subtitle{color:var(--muted);line-height:1.5;margin:0 auto 26px;max-width:420px}.access-input{width:100%;padding:15px 16px;border:1px solid #cbd5e1;border-radius:12px;font-size:18px;text-align:center;letter-spacing:.16em;text-transform:uppercase;outline:none}.access-input:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(37,99,235,.10)}.access-button{width:100%;margin-top:12px;padding:14px 16px;border:0;border-radius:12px;background:var(--navy);color:#fff;font-weight:800;cursor:pointer}.access-error{min-height:22px;margin-top:12px;color:#b91c1c;font-size:13px;font-weight:700}.access-help{margin-top:18px;font-size:11px;color:#94a3b8;line-height:1.45}body.locked>*:not(#accessGate){visibility:hidden}
+</style>
+</head>
+
+<!-- IMAGE PLACEHOLDERS:
+All presentation <img> src values have intentionally been left empty.
+Enter your desired image path or URL in each src="", for example:
+<img src="images/slide-1.png" alt="...">
+-->
+
+<body class="locked">
+<!--
+GITHUB PAGES ACCESS-CODE SETUP:
+Change ATTENDEE_CODE and INSTRUCTOR_CODE in the JavaScript below before publishing.
+ATTENDEE_CODE = participant access.
+INSTRUCTOR_CODE = participant access + Facilitator Mode.
+IMPORTANT: This is a client-side access gate, not server-side security. Because
+GitHub Pages serves the HTML/JavaScript publicly, a technically skilled person
+can inspect the source and bypass the gate. Do not use this for highly confidential material.
+-->
+<div id="accessGate">
+  <div class="access-card">
+    <div class="access-mark">AI</div>
+    <div class="eyebrow">AI Leadership Masterclass</div>
+    <h1>Session 2</h1>
+    <p class="access-subtitle">AI-Powered Executive Productivity<br>Enter your attendee access code to begin.</p>
+    <form onsubmit="return unlockSession(event)">
+      <input id="accessCode" class="access-input" type="password" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ACCESS CODE" autofocus>
+      <button class="access-button" type="submit">ENTER SESSION</button>
+      <div id="accessError" class="access-error" aria-live="polite"></div>
+    </form>
+    <div class="access-help">Authorized attendees only. Please do not share the access code publicly.</div>
+  </div>
+</div>
+
+<header class="topbar">
+  <div class="brand"><span id="modeLabel" style="font-size:10px;color:#2563eb;text-transform:uppercase;letter-spacing:.12em">Presentation Mode</span><br>AI Leadership Masterclass <small>Session 2 · AI-Powered Executive Productivity</small></div>
+  <div class="controls">
+    <button class="btn" id="facBtn" onclick="toggleFacilitator()">Facilitator Mode</button>
+    <button class="btn" onclick="showSlide(0)">Start</button>
+  </div>
+</header>
+<div class="progress" id="progress"></div>
+
+<div class="toc" id="toc"></div>
+
+<main>
+<section class="slide active">
+  <div class="kicker">01 · Tool Selection</div>
+  <h1>Which AI Tool<br>Should I Use?</h1>
+  <p class="subtitle">There is no single “best” AI tool. Choose based on the <strong>task</strong>, your organization's <strong>ecosystem</strong>, the <strong>data</strong> involved, and the <strong>workflow</strong> you want to improve.</p>
+  <div class="grid three" style="margin-top:28px">
+    <div class="card tool"><h3>ChatGPT</h3><strong>General AI & knowledge work</strong><p>Broad-purpose writing, analysis, reasoning, file-based work and reusable workflows.</p></div>
+    <div class="card tool"><h3>Gemini</h3><strong>Google Workspace & collaboration</strong><p>Particularly compelling when work already lives in Gmail, Docs, Drive and Meet.</p></div>
+    <div class="card tool"><h3>Microsoft Copilot</h3><strong>Microsoft 365 productivity</strong><p>Strong fit for organizations centered on Outlook, Word, Excel, PowerPoint and Teams.</p></div>
+    <div class="card tool"><h3>Claude</h3><strong>Writing, documents & analysis</strong><p>Useful for long-form writing, document synthesis, analysis and knowledge work.</p></div>
+    <div class="card tool"><h3>DeepSeek</h3><strong>Reasoning & experimentation</strong><p>Worth evaluating for technical or cost-conscious use, with careful review before sensitive organizational use.</p></div>
+    <div class="card" style="display:flex;align-items:center;justify-content:center;text-align:center"><div><div style="font-size:36px">?</div><h3>Ask a better question</h3><p><strong>“Which tool is best for this job, with this data, in this environment?”</strong></p></div></div>
+  </div>
+  <div class="callout">Today's demonstrations use <strong>Gemini primarily</strong> so we can focus on the workflow rather than switching between five interfaces.</div>
+  <div class="notes"><strong>Facilitator:</strong> Acknowledge the Session 1 question. Do not turn this into a product-ranking debate. Emphasize that product capabilities and plans change, and that organizational fit matters.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">02 · Data Safety</div>
+  <h2>Before You Paste:<br>Know Your Data</h2>
+  <p class="subtitle">The tool name alone does not determine whether information is appropriate to share. Account type, plan, permissions, retention, organizational policy and the data itself all matter.</p>
+  <div class="grid three" style="margin-top:28px">
+    <div class="card" style="border-top:5px solid #16a34a"><span class="pill green-pill">LOW SENSITIVITY</span><h3 style="margin-top:12px">Public</h3><ul><li>Public reports</li><li>Public websites</li><li>Public policies</li><li>Generic business questions</li></ul></div>
+    <div class="card" style="border-top:5px solid #d97706"><span class="pill amber-pill">CHECK FIRST</span><h3 style="margin-top:12px">Internal</h3><ul><li>Internal reports</li><li>Internal procedures</li><li>Staff communications</li><li>Operational information</li></ul></div>
+    <div class="card" style="border-top:5px solid #dc2626"><span class="pill red-pill">HIGH RISK</span><h3 style="margin-top:12px">Confidential</h3><ul><li>Employee/personnel data</li><li>Customer information</li><li>Payroll information</li><li>Passwords/credentials</li><li>Confidential contracts</li><li>Unreleased financial results</li></ul></div>
+  </div>
+  <div class="callout warning"><strong>Golden rule:</strong> Before using AI, ask: <em>What data am I sharing? Who could access it? Am I using an approved account?</em></div>
+  <div class="img-wrap"><img src="images/before_you_paste.png" alt="Sketchnote: Before You Paste — Know Your Data"></div>
+  <div class="notes"><strong>Speaker Notes</strong><br>
+<strong>Suggested time:</strong> 8 minutes<br><br>
+<strong>Opening talking points:</strong>
+<ul>
+<li>“One of the questions from Session 1 was: which AI tool should I actually use?”</li>
+<li>“The answer is not that one tool is always better than another. The right choice depends on the task, your organization's technology environment, the data involved, and the workflow you are trying to improve.”</li>
+<li>Briefly introduce each tool without turning the session into a product competition.</li>
+<li>ChatGPT: broad general-purpose knowledge work, writing, analysis and reusable workflows.</li>
+<li>Gemini: particularly attractive where an organization already works heavily in Google Workspace.</li>
+<li>Copilot: particularly attractive where Microsoft 365 is the organizational environment.</li>
+<li>Claude: strong option for long-form writing, documents and analytical knowledge work.</li>
+<li>DeepSeek: useful to know and evaluate, particularly for reasoning/technical experimentation, but organizational data policies should determine whether sensitive information can be used.</li>
+</ul>
+<strong>Teaching point:</strong> Tool selection should begin with the business problem, not the brand.<br><br>
+<strong>Ask participants:</strong> “Which AI tool are you currently using, if any—and what do you use it for?”<br><br>
+<strong>Transition:</strong> “Now that we know that tool choice matters, there is an even more important question: what information are we putting into these tools?”</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">03 · Email Workflow · Live Demo</div>
+  <h2>From Inbox to Action</h2>
+  <p class="subtitle">Don't start with “write my email.” Start by understanding the thread, then draft, verify and send.</p>
+  <div class="flow">
+    <div class="node">CAPTURE</div><div class="arrow">→</div><div class="node">UNDERSTAND</div><div class="arrow">→</div><div class="node">DRAFT</div><div class="arrow">→</div><div class="node">REVIEW</div><div class="arrow">→</div><div class="node">SEND</div><div class="arrow">→</div><div class="node">FOLLOW UP</div>
+  </div>
+  <div class="demo">
+    <div class="demo-head"><strong>Live Demo 1 · Fictional email thread</strong><button class="btn blue" onclick="openGemini()">Open Gemini ↗</button></div>
+    <div class="demo-body">
+      <p class="small">Use this fictional/sanitized example. Do not use confidential organizational email in a consumer AI account.</p>
+      <pre id="emailThread">EMAIL 1 — Operations Manager
+Subject: Q3 Operating Budget Review
+
+We have reviewed the Q3 operating budget and identified several areas where expenditure is above forecast. Utilities are approximately 18% above budget, while maintenance costs are 12% higher.
+
+Please review the figures and let me know whether you recommend reducing the proposed training budget to compensate.
+
+EMAIL 2 — Finance Manager
+
+I agree that utilities require attention, but I would not recommend reducing training at this stage. We should first determine whether the increase in utilities is temporary or structural.
+
+Could you provide an updated analysis before Friday?</pre>
+      <div class="copy-row"><button class="btn" onclick="copyText('emailThread')">Copy Email Thread</button></div>
+      <p><strong>Prompt 1 — Understand</strong></p>
+      <pre id="p1">Review this email thread and provide:
+1. A three-sentence summary
+2. The main issue being discussed
+3. Decisions already made
+4. Outstanding actions
+5. Deadlines mentioned
+6. What requires my attention
+
+Do not invent information that isn&#x27;t contained in the emails.</pre>
+      <div class="copy-row"><button class="btn" onclick="copyText('p1')">Copy Prompt 1</button></div>
+      <p><strong>Prompt 2 — Draft</strong></p>
+      <pre id="p2">Now draft a concise, professional response. I want to acknowledge the concerns, confirm that I will review the utility and maintenance costs, and avoid committing to any budget reduction until the analysis is complete. Use a professional, confident and collaborative tone. Do not invent figures, dates or commitments.</pre>
+      <div class="copy-row"><button class="btn" onclick="copyText('p2')">Copy Prompt 2</button></div>
+      <div class="callout success"><strong>STOP & VERIFY:</strong> Check numbers, commitments, tone, omissions and any sensitive information before sending.</div>
+    </div>
+  </div>
+  <div class="notes"><strong>Speaker Notes</strong><br>
+<strong>Suggested time:</strong> 10 minutes<br><br>
+<strong>Opening:</strong> “AI productivity is only useful if we use it responsibly. Before we become faster, we need to become safer.”<br><br>
+<strong>Walk through the three levels:</strong>
+<ul>
+<li><strong>Public:</strong> information already intended for public consumption.</li>
+<li><strong>Internal:</strong> organizational information that should be handled according to company policy.</li>
+<li><strong>Confidential:</strong> information that may create financial, legal, privacy or security risk if exposed.</li>
+</ul>
+<strong>Emphasize:</strong>
+<ul>
+<li>Do not paste passwords, credentials, personal employee information or confidential customer information into an AI tool unless the organization's approved environment and policy explicitly permit it.</li>
+<li>Account type and organizational controls matter. A consumer account and an organization-managed AI environment should not automatically be treated as equivalent.</li>
+<li>For today's demonstrations, use only the fictional/sanitized examples supplied in the presentation.</li>
+</ul>
+<strong>Ask:</strong> “What is one type of information in your organization that you would never paste into a public AI chatbot?”<br><br>
+<strong>Transition:</strong> “With that safety foundation in place, let's look at a workflow where almost every manager has an opportunity to save time: email.”</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">04 · Email Triage · Live Demo</div>
+  <h2>From Information Overload<br>to Action</h2>
+  <div class="grid three" style="margin-top:24px">
+    <div class="card" style="border-top:5px solid #dc2626"><h3>🔴 ACT NOW</h3><p>Requires my decision or action.</p></div>
+    <div class="card" style="border-top:5px solid #d97706"><h3>🟡 DELEGATE</h3><p>Someone else should handle it.</p></div>
+    <div class="card" style="border-top:5px solid #64748b"><h3>⚪ INFORMATION</h3><p>No action required.</p></div>
+  </div>
+  <div class="demo">
+    <div class="demo-head"><strong>Live Demo 2 · Email triage</strong><button class="btn blue" onclick="openGemini()">Open Gemini ↗</button></div>
+    <div class="demo-body">
+      <pre id="emailTriage">EMAIL A
+Please approve the revised Q3 travel budget by Thursday.
+
+EMAIL B
+Here is the monthly staff newsletter for your information.
+
+EMAIL C
+Could you ask the procurement team to obtain three quotations for the new equipment?
+
+EMAIL D
+The board meeting agenda has been circulated. Please review Item 4 before Monday.</pre>
+      <div class="copy-row"><button class="btn" onclick="copyText('emailTriage')">Copy Example Emails</button></div>
+      <p><strong>Prompt</strong></p>
+      <pre id="p3">Classify these four emails into ACT NOW, DELEGATE or INFORMATION. For each email, explain why. Identify any deadline, requested action and person or team involved. Do not infer information that isn&#x27;t explicitly stated.
+
+Then create a prioritized action list, starting with the most urgent item.</pre>
+      <div class="copy-row"><button class="btn" onclick="copyText('p3')">Copy Prompt</button></div>
+      <div class="callout">Teaching point: AI is helping us <strong>understand and prioritize information</strong>—not independently manage the inbox.</div>
+    </div>
+  </div>
+  <div class="img-wrap"><img src="images/email_triage.png" alt="Sketchnote: Email Triage"></div>
+  <div class="notes"><strong>Speaker Notes</strong><br>
+<strong>Suggested time:</strong> 18 minutes<br><br>
+<strong>Set up the demo:</strong> “I am not connecting Gemini to my email. I am going to use a fictional email thread and manually paste it into Gemini. This lets us see the workflow without giving an AI tool access to anyone's mailbox.”<br><br>
+<strong>Live demo steps:</strong>
+<ol>
+<li>Click <strong>Open Gemini</strong>.</li>
+<li>Click <strong>Copy Email Thread</strong> and paste it into Gemini.</li>
+<li>Click <strong>Copy Prompt 1</strong> and paste it beneath the email.</li>
+<li>Review the response with participants.</li>
+<li>Return to this presentation.</li>
+<li>Copy <strong>Prompt 2</strong> and paste it into the same Gemini conversation.</li>
+<li>Review the draft response.</li>
+<li>Ask participants what they would verify before sending.</li>
+</ol>
+<strong>Key teaching points:</strong>
+<ul>
+<li>AI can reduce the time required to understand a long thread.</li>
+<li>Separate <strong>understanding</strong> from <strong>drafting</strong>.</li>
+<li>Never allow a polished AI response to create a false sense of accuracy.</li>
+<li>The human remains responsible for facts, commitments, tone and the final decision to send.</li>
+</ul>
+<strong>Ask:</strong> “What would you personally verify before sending this email?”<br><br>
+<strong>Expected answers:</strong> numbers, deadlines, commitments, names, tone, missing context and whether the proposed response actually reflects the manager's intention.<br><br>
+<strong>Transition:</strong> “Now let's move from drafting one email to managing an entire inbox.”</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">05 · Executive Documents · Live Demo</div>
+  <h2>From Rough Notes<br>to Executive Document</h2>
+  <div class="flow">
+    <div class="node">ROUGH NOTES</div><div class="arrow">→</div><div class="node">STRUCTURE</div><div class="arrow">→</div><div class="node">FIRST DRAFT</div><div class="arrow">→</div><div class="node">CRITIQUE</div><div class="arrow">→</div><div class="node">FINAL</div>
+  </div>
+  <div class="two-col-demo">
+    <div class="card"><h3>Fictional management notes</h3><pre id="managementNotes">Q3 MANAGEMENT NOTES
+
+Revenue increased by 8% compared with the previous quarter.
+
+Operating expenses increased by 14%.
+
+Utility costs increased significantly.
+
+Maintenance expenses were also above forecast.
+
+Customer complaints increased during the quarter.
+
+Management is considering several cost-reduction measures.
+
+No decision has yet been made regarding the training budget.</pre><button class="btn" onclick="copyText('managementNotes')">Copy Notes</button></div>
+    <div class="card"><h3>Human remains responsible for</h3><ul><li>Facts</li><li>Business context</li><li>Judgment</li><li>Recommendations</li><li>Approval</li></ul></div>
+  </div>
+  <div class="demo">
+    <div class="demo-head"><strong>Live Demo · Executive management memo</strong><button class="btn blue" onclick="openGemini()">Open Gemini ↗</button></div>
+    <div class="demo-body">
+      <p><strong>Prompt 1 — Draft</strong></p>
+      <pre id="p4">Act as a senior management consultant helping prepare an executive management memo. Convert these rough notes into a one-page executive briefing.
+
+Use the following structure:
+1. Executive Summary
+2. Key Findings
+3. Areas of Concern
+4. Management Implications
+5. Recommended Questions for Management
+6. Decisions Required
+
+Clearly distinguish facts from interpretations. Do not invent financial figures, causes or recommendations that are not supported by the information provided.</pre><button class="btn" onclick="copyText('p4')">Copy Draft Prompt</button>
+      <p style="margin-top:20px"><strong>Prompt 2 — Critique</strong></p>
+      <pre id="p5">Now act as a critical reviewer. Examine your draft and identify:
+- Unsupported claims
+- Missing information
+- Statements that could be misleading
+- Questions management should answer
+- Information that should be verified before this is presented to senior leadership
+
+Do not rewrite the document yet.</pre><button class="btn" onclick="copyText('p5')">Copy Critique Prompt</button>
+    </div>
+  </div>
+  <div class="img-wrap"><img src="images/executive_doc_drafting.png" alt="Sketchnote: Executive Document Drafting"></div>
+  <div class="notes"><strong>Speaker Notes</strong><br>
+<strong>Suggested time:</strong> 12 minutes<br><br>
+<strong>Opening:</strong> “Email overload is not just a writing problem. It is a prioritization problem.”<br><br>
+<strong>Before the demo:</strong> Ask participants to classify the four fictional emails themselves as ACT NOW, DELEGATE or INFORMATION.<br><br>
+<strong>Live demo steps:</strong>
+<ol>
+<li>Click <strong>Open Gemini</strong>.</li>
+<li>Copy the four fictional emails.</li>
+<li>Copy and run the triage prompt.</li>
+<li>Compare Gemini's classification with the participants' predictions.</li>
+<li>Discuss any classification that requires managerial judgment.</li>
+</ol>
+<strong>Key teaching point:</strong> “AI can help us organize information and make the workload visible. It should not quietly become the person deciding what matters to the organization.”<br><br>
+<strong>Ask:</strong> “If an AI tool marks something as low priority but it relates to a major customer or financial issue, who is accountable?”<br><br>
+<strong>Answer:</strong> The manager remains accountable. AI classification is an aid, not authority.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">06 · Meeting Intelligence · Live Demo</div>
+  <h2>Turn Meetings<br>Into Action</h2>
+  <div class="grid three" style="margin-top:25px">
+    <div class="card"><h3>BEFORE</h3><strong>Prepare</strong><p>Agenda · background · questions · previous actions</p></div>
+    <div class="card"><h3>DURING</h3><strong>Capture</strong><p>Decisions · actions · commitments · unresolved issues</p></div>
+    <div class="card"><h3>AFTER</h3><strong>Execute</strong><p>Summary · action list · deadlines · follow-up</p></div>
+  </div>
+  <div class="callout">Core idea: <strong>Conversation → Decisions → Actions</strong></div>
+  <div class="demo">
+    <div class="demo-head"><strong>Live Demo · Fictional meeting notes</strong><button class="btn blue" onclick="openGemini()">Open Gemini ↗</button></div>
+    <div class="demo-body">
+      <pre id="meetingNotes">MEETING: OPERATIONS &amp; FINANCE REVIEW
+
+John: We need to reduce utility costs next quarter.
+
+Sarah: I recommend that we first review electricity consumption by department.
+
+David: I&#x27;ll ask facilities to provide the consumption report.
+
+John: Good. Can we have that by Wednesday?
+
+Sarah: Once we have the report, finance can compare consumption against budget.
+
+John: Let&#x27;s meet again Friday to review the findings.
+
+David: I&#x27;ll also ask procurement to review the current electricity supplier contract.
+
+John: Good. Let&#x27;s include that in Friday&#x27;s discussion.</pre>
+      <div class="copy-row"><button class="btn" onclick="copyText('meetingNotes')">Copy Meeting Notes</button></div>
+      <pre id="p6">Analyze these meeting notes and produce:
+1. Decisions made
+2. Action items
+3. Person responsible, if explicitly stated
+4. Deadlines, if explicitly stated
+5. Unresolved issues
+6. Follow-up questions
+
+Do not infer responsibility or deadlines that are not explicitly stated.</pre>
+      <div class="copy-row"><button class="btn" onclick="copyText('p6')">Copy Prompt</button></div>
+      <p><strong>Optional follow-up prompt</strong></p>
+      <pre id="p6b">Turn the results into a concise professional follow-up email to the meeting participants. Do not add commitments, deadlines or responsibilities that are not explicitly stated.</pre>
+      <button class="btn" onclick="copyText('p6b')">Copy Follow-up Prompt</button>
+    </div>
+  </div>
+  <div class="img-wrap"><img src="images/meeting_intelligence.png" alt="Sketchnote: Meeting Intelligence"></div>
+  <div class="notes"><strong>Speaker Notes</strong><br>
+<strong>Suggested time:</strong> 18 minutes<br><br>
+<strong>Opening:</strong> “Managers spend enormous amounts of time turning rough notes, emails and data into documents. AI is particularly useful as a first-draft engine—but the first draft is not the final decision.”<br><br>
+<strong>Live demo steps:</strong>
+<ol>
+<li>Copy the fictional management notes.</li>
+<li>Open Gemini.</li>
+<li>Paste the notes and run <strong>Prompt 1 — Draft</strong>.</li>
+<li>Review the resulting executive memo with the group.</li>
+<li>Then run <strong>Prompt 2 — Critique</strong>.</li>
+<li>Highlight at least one unsupported or potentially misleading statement if the model produces one.</li>
+</ol>
+<strong>Explain the workflow:</strong> Rough notes → Structure → Draft → Critique → Human revision → Final document.<br><br>
+<strong>Key teaching point:</strong> AI should help with structure, language and synthesis. The manager remains responsible for business context, judgment, recommendations and approval.<br><br>
+<strong>Ask:</strong> “Would you put this AI-generated document directly into a board pack? Why or why not?”<br><br>
+<strong>Transition:</strong> “The same principle applies to meetings: the value is not simply producing notes; it is converting conversation into action.”</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">07 · Executive Briefings · Live Demo</div>
+  <h2>From Information Overload<br>to Executive Insight</h2>
+  <div class="flow">
+    <div class="node">REPORTS</div><div class="node">EMAILS</div><div class="node">NOTES</div><div class="node">RESEARCH</div><div class="node">DOCUMENTS</div>
+    <div class="arrow">→</div><div class="node">AI: SUMMARIZE · COMPARE · IDENTIFY · CHALLENGE</div>
+    <div class="arrow">→</div><div class="node">FINDINGS · RISKS · IMPLICATIONS · ACTIONS · DECISIONS</div>
+  </div>
+  <div class="callout warning"><strong>Don't ask:</strong> “Give me insights.”<br><strong>Ask:</strong> “What changed? What is the evidence? What could go wrong? What information is missing? What should management decide?”</div>
+  <div class="demo">
+    <div class="demo-head"><strong>Live Demo · Executive briefing</strong><button class="btn blue" onclick="openGemini()">Open Gemini ↗</button></div>
+    <div class="demo-body">
+      <p>Reuse the fictional management notes from Slide 5.</p>
+      <pre id="p7">You are preparing a briefing for a senior management team. Review the information provided and produce:
+1. Three most important findings
+2. Three potential risks
+3. Business implications
+4. Questions management should investigate
+5. Recommended next steps
+6. Decisions that may be required
+
+Clearly distinguish between FACTS, INTERPRETATION and RECOMMENDATION. Do not invent information.</pre><button class="btn" onclick="copyText('p7')">Copy Briefing Prompt</button>
+      <p style="margin-top:18px"><strong>Challenge the recommendation</strong></p>
+      <pre id="p8">What additional information would you need before making a confident recommendation? Group the missing information into:
+- Financial
+- Operational
+- Customer
+- Risk
+- Strategic
+
+Do not assume facts that are not provided.</pre><button class="btn" onclick="copyText('p8')">Copy Challenge Prompt</button>
+    </div>
+  </div>
+  <div class="img-wrap"><img src="images/executive_briefings.png" alt="Sketchnote: Executive Briefings"></div>
+  <div class="notes"><strong>Speaker Notes</strong><br>
+<strong>Suggested time:</strong> 15 minutes<br><br>
+<strong>Opening:</strong> “How many meetings end with everyone agreeing on what to do—and then nobody is completely sure who is doing what?”<br><br>
+<strong>Live demo steps:</strong>
+<ol>
+<li>Copy the fictional meeting notes.</li>
+<li>Open Gemini.</li>
+<li>Paste the notes and run the meeting-intelligence prompt.</li>
+<li>Review decisions, action items, owners and deadlines.</li>
+<li>Run the optional follow-up prompt to create a concise follow-up email.</li>
+</ol>
+<strong>Key teaching points:</strong>
+<ul>
+<li>Meeting intelligence can reduce administrative work.</li>
+<li>It can make decisions and follow-up actions easier to find.</li>
+<li>It should not invent a person responsible for an action or create a deadline that was never agreed.</li>
+<li>Real meeting transcripts may contain sensitive information; recording, transcription and AI processing should follow organizational policy and applicable consent requirements.</li>
+</ul>
+<strong>Ask:</strong> “What is more valuable to a manager: a perfect transcript, or a reliable list of decisions and actions?”<br><br>
+<strong>Expected answer:</strong> Usually the decisions and actions—provided they are accurate and verified.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">08 · Personal AI Workflows · Live Demo</div>
+  <h2>Stop Starting<br>From Scratch</h2>
+  <p class="subtitle">Turn recurring tasks into reusable workflows. The goal is not more prompts; it is a repeatable way to improve your work.</p>
+  <div class="flow">
+    <div class="node">INPUT</div><div class="arrow">→</div><div class="node">AI ASSISTANCE</div><div class="arrow">→</div><div class="node">HUMAN REVIEW</div><div class="arrow">→</div><div class="node">OUTPUT</div>
+  </div>
+  <div class="grid three">
+    <div class="card"><h3>Monday Morning</h3><p>Priorities → weekly plan</p></div>
+    <div class="card"><h3>Before a Meeting</h3><p>Agenda + background → briefing</p></div>
+    <div class="card"><h3>After a Meeting</h3><p>Notes → actions + follow-up</p></div>
+    <div class="card"><h3>Before a Report</h3><p>Data + notes → draft briefing</p></div>
+    <div class="card"><h3>End of Week</h3><p>Activities → executive summary</p></div>
+  </div>
+  <div class="demo">
+    <div class="demo-head"><strong>Live Demo · Weekly executive review</strong><button class="btn blue" onclick="openGemini()">Open Gemini ↗</button></div>
+    <div class="demo-body">
+      <pre id="weeklyInfo">THIS WEEK
+
+Monday: Budget review meeting
+Tuesday: Operations meeting
+Wednesday: Reviewed Q3 expenses
+Thursday: Met with procurement team
+Friday: Prepared management report
+
+Outstanding:
+- Review utility expenses
+- Follow up with procurement
+- Prepare Monday management briefing
+
+Priority:
+- Complete Q3 expense analysis
+- Prepare management briefing</pre><button class="btn" onclick="copyText('weeklyInfo')">Copy Weekly Information</button>
+      <p style="margin-top:18px"><strong>Reusable prompt</strong></p>
+      <pre id="p9">Act as my executive assistant. Based only on the information provided, prepare my weekly executive review with four sections:
+1. What I accomplished
+2. Outstanding actions
+3. Priorities for next week
+4. Issues requiring my attention
+
+Keep it concise and executive-level. Do not invent activities or accomplishments.</pre><button class="btn" onclick="copyText('p9')">Copy Prompt</button>
+    </div>
+  </div>
+  <div class="notes"><strong>Speaker Notes</strong><br>
+<strong>Suggested time:</strong> 15 minutes<br><br>
+<strong>Opening:</strong> “Executives rarely need more information. They need better synthesis of the information they already have.”<br><br>
+<strong>Explain the transformation:</strong> Reports + emails + notes + research → AI-assisted synthesis → findings + risks + implications + questions + decisions.<br><br>
+<strong>Live demo steps:</strong>
+<ol>
+<li>Reuse the fictional management notes from Slide 5.</li>
+<li>Open Gemini.</li>
+<li>Run the executive briefing prompt.</li>
+<li>Review the findings, risks and recommendations.</li>
+<li>Run the challenge prompt asking what information is missing.</li>
+</ol>
+<strong>Key teaching point:</strong> The strongest executive prompt does not merely ask for a summary. It asks the AI to identify changes, risks, implications, missing information and decisions that may be required.<br><br>
+<strong>Important distinction:</strong> Facts ≠ interpretation ≠ recommendation. Ask the AI to label them separately.<br><br>
+<strong>Ask:</strong> “Which missing piece of information could materially change this recommendation?”</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">09 · Participant Exercise</div>
+  <h2>Build Your Own<br>AI Workflow</h2>
+  <p class="subtitle">Choose one recurring task from your real work. Use the five-part template below to design a simple, safe and repeatable AI-assisted process.</p>
+  <div class="exercise">
+    <div class="exercise-grid">
+      <div class="step"><div class="num">01</div><h4>MY TASK</h4><p>What do I repeatedly do?</p></div>
+      <div class="step"><div class="num">02</div><h4>MY INPUT</h4><p>What information do I start with?</p></div>
+      <div class="step"><div class="num">03</div><h4>AI CAN HELP ME</h4><p>What should AI do for me?</p></div>
+      <div class="step"><div class="num">04</div><h4>I MUST VERIFY</h4><p>What must I check or validate myself?</p></div>
+      <div class="step"><div class="num">05</div><h4>MY OUTPUT</h4><p>What should the final result look like?</p></div>
+    </div>
+    <div class="callout success" style="margin-top:22px"><strong>Worked example — Monthly management report:</strong> Task: prepare report · Input: financial results + management notes · AI: identify trends, summarize highlights, draft commentary, outline risks · Verify: numbers, context, assumptions, recommendations · Output: one-page executive briefing.</div>
+  </div>
+  <div class="img-wrap"><img src="images/build_your_own.png" alt="Sketchnote: Build Your Own AI Workflow"></div>
+  <div class="notes"><strong>Speaker Notes</strong><br>
+<strong>Suggested time:</strong> 12 minutes<br><br>
+<strong>Opening:</strong> “The real productivity gain comes when we stop reinventing the same prompt every Monday.”<br><br>
+<strong>Explain personal workflows:</strong> A workflow is a repeatable sequence with a predictable input, a defined AI task, a human review step and a useful output.<br><br>
+<strong>Live demo steps:</strong>
+<ol>
+<li>Copy the fictional weekly information.</li>
+<li>Open Gemini.</li>
+<li>Run the weekly executive-review prompt.</li>
+<li>Review the result.</li>
+<li>Ask participants how they would adapt the same structure to their own weekly routine.</li>
+</ol>
+<strong>Examples to mention:</strong> weekly priorities, meeting preparation, post-meeting follow-up, monthly management reports, board briefing preparation and end-of-week reviews.<br><br>
+<strong>Key teaching point:</strong> “We are not trying to create hundreds of prompts. We are trying to create a small number of reliable workflows that repeatedly save time.”</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">10 · Takeaway</div>
+  <h2>Your AI Productivity<br>Challenge</h2>
+  <p class="subtitle">Before the next session, choose one recurring task and turn today's learning into a real experiment.</p>
+  <div class="grid two" style="margin-top:28px">
+    <div class="card">
+      <h3>Choose ONE recurring task</h3>
+      <ol>
+        <li><strong>Capture</strong> — What information do you start with?</li>
+        <li><strong>Ask</strong> — What can AI help you do?</li>
+        <li><strong>Verify</strong> — What must you check?</li>
+        <li><strong>Improve</strong> — What would make the workflow better?</li>
+        <li><strong>Measure</strong> — How much time or effort did you save?</li>
+      </ol>
+    </div>
+    <div class="card" style="display:flex;align-items:center;justify-content:center;text-align:center">
+      <div>
+        <div style="font-size:30px;font-weight:900;letter-spacing:.02em">CAPTURE → ANALYZE → DRAFT</div>
+        <div style="font-size:30px;font-weight:900;letter-spacing:.02em;margin-top:8px">VERIFY → DECIDE → ACT</div>
+        <p style="font-size:18px;margin-top:20px"><strong>AI assists. Humans remain accountable.</strong></p>
+      </div>
+    </div>
+  </div>
+  <div class="callout success" style="margin-top:30px">Start small. Use appropriate data. Verify important outputs. When a workflow works, save it and improve it.</div>
+  <div class="notes"><strong>Speaker Notes</strong><br>
+<strong>Suggested time:</strong> 12 minutes<br><br>
+<strong>Participant exercise:</strong> Give participants approximately 6–7 minutes to choose one recurring task and complete the five-part workflow template.<br><br>
+<strong>Walk them through each field:</strong>
+<ol>
+<li><strong>My Task:</strong> What do I repeatedly do?</li>
+<li><strong>My Input:</strong> What information do I start with?</li>
+<li><strong>AI Can Help Me:</strong> What specific work should AI perform?</li>
+<li><strong>I Must Verify:</strong> What must I personally check?</li>
+<li><strong>My Output:</strong> What should the final result look like?</li>
+</ol>
+<strong>Coaching questions:</strong>
+<ul>
+<li>“Is this task repeated often enough to justify a workflow?”</li>
+<li>“What part of the task is information processing rather than judgment?”</li>
+<li>“What could go wrong if AI gets this wrong?”</li>
+<li>“What must remain a human decision?”</li>
+</ul>
+<strong>Share-out:</strong> Invite 2–3 participants to describe their workflows. Reinforce good examples and identify any data-safety concerns.</div>
+</section>
+</main>
+
+<div class="footer-nav">
+  <span class="slide-count" id="slideCount">1 / 10</span>
+  <button id="prevBtn" class="btn" onclick="prevSlide()">← Previous</button>
+  <button id="nextBtn" class="btn primary" onclick="nextSlide()">Next →</button>
+</div>
+
+<script>
+
+const ATTENDEE_CODE = "JUBA26-AI-SESSION2";
+const INSTRUCTOR_CODE = "JUBA26-FACILITATOR-SESSION2";
+let accessRole = null;
+
+function unlockSession(event){
+  event.preventDefault();
+  const entered=document.getElementById('accessCode').value.trim().toUpperCase();
+  const error=document.getElementById('accessError');
+  if(entered===ATTENDEE_CODE){accessRole='attendee';grantAccess(false);return false;}
+  if(entered===INSTRUCTOR_CODE){accessRole='instructor';grantAccess(true);return false;}
+  error.textContent='Incorrect access code. Please check your code and try again.';
+  document.getElementById('accessCode').select();
+  return false;
+}
+function grantAccess(isInstructor){
+  document.body.classList.remove('locked');
+  document.getElementById('accessGate').classList.add('hidden');
+  const facBtn=document.getElementById('facBtn');
+  if(!isInstructor){
+    if(facBtn) facBtn.style.display='none';
+    document.querySelectorAll('.notes').forEach(n=>n.style.display='none');
+  }
+  const modeLabel=document.getElementById('modeLabel');
+  if(modeLabel) modeLabel.textContent=isInstructor?'Instructor Access':'Attendee Access';
+  sessionStorage.setItem('aiMasterclassAccess',isInstructor?'instructor':'attendee');
+}
+function restoreAccess(){
+  const saved=sessionStorage.getItem('aiMasterclassAccess');
+  if(saved==='instructor'){accessRole='instructor';grantAccess(true);}
+  else if(saved==='attendee'){accessRole='attendee';grantAccess(false);}
+}
+
+let current = 0;
+const slides = [...document.querySelectorAll('.slide')];
+const toc = document.getElementById('toc');
+const progress = document.getElementById('progress');
+const count = document.getElementById('slideCount');
+
+slides.forEach((_, i) => {
+  const b = document.createElement('button');
+  b.className = 'dot';
+  b.title = 'Slide ' + (i+1);
+  b.onclick = () => showSlide(i);
+  toc.appendChild(b);
+});
+
+
+function updateNavButtons() {
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  if (!prevBtn || !nextBtn) return;
+
+  prevBtn.style.visibility = current === 0 ? 'hidden' : 'visible';
+  nextBtn.style.visibility = current === slides.length - 1 ? 'hidden' : 'visible';
+}
+
+function showSlide(i) {
+  current = Math.max(0, Math.min(slides.length-1, i));
+  slides.forEach((s, n) => s.classList.toggle('active', n === current));
+  [...toc.children].forEach((b,n) => b.classList.toggle('active', n === current));
+  count.textContent = (current+1) + ' / ' + slides.length;
+  progress.style.width = (((current+1)/slides.length)*100) + '%';
+  window.scrollTo({top:0, behavior:'smooth'});
+  updateNavButtons();
+}
+
+function nextSlide() { showSlide(current+1); }
+function prevSlide() { showSlide(current-1); }
+document.addEventListener('keydown', e => {
+  if (['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return;
+  if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+  if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prevSlide(); }
+  if (e.key === 'Home') showSlide(0);
+  if (e.key === 'End') showSlide(slides.length-1);
+});
+function toggleFacilitator() {
+  if (accessRole !== 'instructor') return;
+  document.body.classList.toggle('facilitator');
+  document.getElementById('facBtn').textContent =
+    document.body.classList.contains('facilitator') ? 'Hide Facilitator Notes' : 'Facilitator Mode';
+  document.getElementById('modeLabel').textContent =
+    document.body.classList.contains('facilitator') ? 'Facilitator Mode — Speaker Notes Visible' : 'Presentation Mode';
+}
+function openGemini() {
+  window.open('https://gemini.google.com/', '_blank', 'noopener,noreferrer');
+}
+async function copyText(id) {
+  const el = document.getElementById(id);
+  const text = el.innerText || el.textContent;
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch (err) {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+  }
+  const btn = event && event.currentTarget;
+  if (btn) {
+    const original = btn.textContent;
+    btn.textContent = 'Copied ✓';
+    setTimeout(() => btn.textContent = original, 1200);
+  }
+}
+showSlide(0);
+updateNavButtons();
+restoreAccess();
+</script>
+</body>
+</html>
