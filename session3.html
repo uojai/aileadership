@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Leadership Masterclass — Session 3</title>
+<style>
+:root{
+  --bg:#f8fafc;--card:#ffffff;--ink:#1e293b;--muted:#64748b;
+  --accent:#2563eb;--accent2:#0f766e;--line:#e2e8f0;
+  --shadow:0 18px 45px rgba(15,23,42,.10);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,textarea{font:inherit}
+.hidden{display:none!important}
+#gate{min-height:100vh;display:grid;place-items:center;padding:24px}
+.gate-card{width:min(560px,100%);background:#fff;border:1px solid var(--line);border-radius:24px;padding:40px;box-shadow:var(--shadow)}
+.eyebrow,.kicker{font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1,h2,h3{line-height:1.08;margin:0}
+.gate-card h1{font-size:clamp(2rem,6vw,3.5rem);margin:12px 0}
+.gate-card p{color:var(--muted);line-height:1.65}
+.gate-row{display:flex;gap:10px;margin-top:24px}
+.gate-row input{flex:1;border:1px solid var(--line);border-radius:12px;padding:13px 14px;outline:none}
+.gate-row input:focus{border-color:var(--accent)}
+.primary,.secondary,.tool-btn,.copy-btn{
+  border:0;border-radius:11px;padding:11px 15px;cursor:pointer;font-weight:750
+}
+.primary{background:var(--ink);color:#fff}.secondary{background:#eef2f7;color:var(--ink)}
+.tool-btn{background:#dbeafe;color:#1d4ed8}.copy-btn{background:#ecfeff;color:#0f766e}
+#error{color:#b91c1c;font-size:.9rem;margin-top:10px}
+
+#app{min-height:100vh}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(248,250,252,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.topbar-inner{width:min(1180px,calc(100% - 44px));margin:auto;min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-weight:850}.brand small{display:block;color:var(--muted);font-weight:600;font-size:.72rem;margin-top:2px}
+.top-actions{display:flex;gap:8px;align-items:center}
+.mode{font-size:.78rem;font-weight:800;padding:7px 10px;border-radius:999px;background:#e2e8f0}
+main{width:min(1180px,calc(100% - 44px));margin:0 auto;padding:34px 0 110px}
+.slide{display:none;min-height:calc(100vh - 180px);align-items:center}
+.slide.active{display:flex}
+.slide-inner{width:100%;background:var(--card);border:1px solid var(--line);border-radius:28px;padding:clamp(26px,5vw,62px);box-shadow:var(--shadow)}
+.slide-number{color:var(--muted);font-weight:800;font-size:.85rem;margin-bottom:22px}
+.slide h2{font-size:clamp(2rem,5vw,4rem);max-width:900px;margin:10px 0 22px}
+.overview{font-size:clamp(1.05rem,2vw,1.3rem);line-height:1.6;max-width:880px;color:#334155}
+.columns{display:grid;grid-template-columns:1.2fr .8fr;gap:34px;align-items:start}
+ul{padding-left:1.2rem;line-height:1.75}
+.takeaway{margin-top:24px;border-left:4px solid var(--accent);padding:15px 18px;background:#f1f5f9;border-radius:0 12px 12px 0;font-weight:750}
+.prompt-box,.data-box,.notes{margin-top:24px;border:1px solid var(--line);border-radius:16px;padding:18px;background:#f8fafc}
+.prompt-box strong,.data-box strong,.notes strong{display:block;margin-bottom:9px}
+pre{white-space:pre-wrap;overflow:auto;margin:0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88rem;line-height:1.6}
+.data-box{background:#fff}
+.controls{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.96);border-top:1px solid var(--line)}
+.controls-inner{width:min(1180px,calc(100% - 44px));margin:auto;min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.progress{font-size:.82rem;color:var(--muted);font-weight:750}
+.nav-buttons{display:flex;gap:8px}
+.nav-buttons button:disabled{opacity:.35;cursor:not-allowed}
+.demo-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
+.notes{display:none;background:#fffbeb;border-color:#fde68a}
+.facilitator .notes{display:block}
+.placeholder{
+  width:100%;min-height:220px;border:2px dashed #cbd5e1;border-radius:18px;
+  display:grid;place-items:center;color:#94a3b8;text-align:center;margin-top:24px
+}
+.placeholder img{display:block;width:100%;max-width:100%;height:auto}
+.practice-title{font-size:1rem;font-weight:850;margin-bottom:8px}
+.exercise{margin-top:24px;padding:18px;border-radius:16px;background:#f0fdfa;border:1px solid #ccfbf1}
+.footer-note{color:var(--muted);font-size:.82rem;margin-top:18px}
+@media(max-width:800px){
+ .columns{grid-template-columns:1fr}
+ .topbar-inner{align-items:flex-start;padding:12px 0}
+ .brand small{display:none}
+ .slide-inner{border-radius:20px}
+ .slide{min-height:auto}
+ .gate-row{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<section id="gate">
+  <div class="gate-card">
+    <div class="eyebrow">AI Leadership Masterclass</div>
+    <h1>Session 3</h1>
+    <p><strong>AI for Financial &amp; Data-Driven Decision Making</strong></p>
+    <p>Saturday, September 5, 2026 · 3:00–5:00 PM Juba Time</p>
+    <p>Enter your access code to continue.</p>
+    <div class="gate-row">
+      <input id="accessCode" type="password" placeholder="Access code" autocomplete="off">
+      <button class="primary" onclick="unlock()">Enter</button>
+    </div>
+    <div id="error"></div>
+  </div>
+</section>
+
+<div id="app" class="hidden">
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">AI Leadership Masterclass<small>Session 3 · Financial &amp; Data-Driven Decision Making</small></div>
+    <div class="top-actions">
+      <span id="modeLabel" class="mode">Attendee Mode</span>
+<!--      <button id="facBtn" class="secondary" onclick="toggleFacilitator()">Facilitator Mode</button>-->
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="slide active">
+<div class="slide-inner">
+  <div class="slide-number">01 / 10</div>
+  <div class="kicker">01 · Working with Spreadsheets</div>
+  <h2>AI + Excel / Google Sheets</h2>
+  <div class="columns">
+    <div>
+      <p class="overview">Use AI to understand, clean, transform and interrogate spreadsheet data—without surrendering financial judgment.</p>
+      <ul>
+        <li>Translate business questions into formulas and analysis steps</li>
+        <li>Identify missing values, duplicates, inconsistent labels and unusual records</li>
+        <li>Generate and explain formulas in plain language</li>
+        <li>Use AI to suggest what to investigate next</li>
+      </ul>
+      <div class="takeaway">AI accelerates spreadsheet work; the manager still owns the logic and the numbers.</div>
+    </div>
+    <div>
+      <div class="placeholder"><img src="images/session3_excellsheets.jpg" alt="Sketchnote placeholder"></div>
+    </div>
+  </div>
+  <div class="notes"><strong>Facilitator notes</strong>Frame AI as a spreadsheet thinking partner, not an autonomous finance analyst. Emphasize that attendees should never paste confidential financial data into an AI tool unless their organization's approved environment permits it.</div>
+</div>
+</section>
+
+<section class="slide">
+<div class="slide-inner">
+  <div class="slide-number">02 / 10</div>
+  <div class="kicker">Practical</div>
+  <h2>Spreadsheet Interrogation</h2>
+  <div class="data-box"><strong>Synthetic departmental expense data</strong><pre>Department | Jan | Feb | Mar | Apr
+Operations | 42,000 | 44,500 | 51,800 | 49,700
+Sales | 28,400 | 30,100 | 29,600 | 35,900
+Administration | 18,200 | 18,700 | 19,100 | 24,800
+IT | 12,500 | 14,900 | 15,300 | 21,700</pre>
+  </div>
+  <!-- Download Data -->
+  <div class="demo-row">
+    <a
+            href="https://drive.google.com/uc?export=download&id=1wZAqqiPYM5D5oeKVn-_u6YxERQbPFENm"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="primary"
+            style="text-decoration:none;display:inline-block;"
+    >
+      ↓ Download Synthetic Data
+    </a>
+    <button
+            class="secondary"
+            onclick="copyExpenseDataLink()"
+    >
+      🔗 Copy Shared File Link
+    </button>
+  </div>
+
+  <div class="prompt-box">
+    <strong>Live demo prompt</strong>
+    <pre id="p2">I am analyzing this synthetic departmental expense table. First, check the structure and identify any data-quality issues. Then calculate month-over-month percentage changes by department, rank the largest increases in April, and explain the formulas you used. Finally, suggest three follow-up questions a finance manager should investigate. Do not invent explanations for the changes; label hypotheses as hypotheses.</pre>
+    <button class="copy-btn" onclick="copyText('p2')">Copy prompt</button>
+    <button class="tool-btn" onclick="openGemini('p2')">Open Gemini</button>
+  </div>
+</div>
+</section>
+
+<section class="slide">
+<div class="slide-inner">
+  <div class="slide-number">03 / 10</div>
+  <div class="kicker">02 · Financial Analysis</div>
+  <h2>Financial Analysis with AI</h2>
+  <div class="columns">
+    <div>
+      <p class="overview">Move from “what happened?” to “what does it mean?” by combining financial metrics with management context.</p>
+      <ul>
+        <li>Summarize Profit and Loss, balance-sheet and cash-flow information</li>
+        <li>Calculate margins, growth rates and key ratios</li>
+        <li>Separate facts, interpretations and hypotheses</li>
+        <li>Ask AI to identify questions that deserve management attention</li>
+      </ul>
+      <div class="takeaway">Good financial prompting asks AI to explain the evidence—not manufacture a story.</div>
+    </div>
+    <div>
+      <div class="placeholder"><img src="images/session3_financialanalysis.jpg" alt="Financial Analysis"></div>
+    </div>
+  </div>
+<!--  <div class="notes"><strong>Facilitator notes</strong>Introduce a three-layer discipline: arithmetic, interpretation, and managerial judgment. AI can support the first two, but management remains accountable for the decision.</div>-->
+</div>
+</section>
+
+<section class="slide">
+<div class="slide-inner">
+  <div class="slide-number">04 / 10</div>
+  <div class="kicker">Practical</div>
+  <h2>AI-Assisted Financial Analysis</h2>
+  <div class="data-box"><strong>Synthetic management snapshot — fictional hotel group</strong><pre>Metric | Prior Year | Current Year
+Revenue | 8,400,000 | 9,450,000
+Operating Costs | 5,880,000 | 6,930,000
+Operating Profit | 2,520,000 | 2,520,000
+Receivables | 1,050,000 | 1,480,000
+Cash | 1,920,000 | 1,610,000</pre></div>
+
+  <div class="demo-row">
+    <a
+            href="https://drive.google.com/uc?export=download&id=1Dqxsm3wTOrEhDFxeubGgRj1Z7HOueTFj"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="primary"
+            style="text-decoration:none;display:inline-block;"
+    >
+      ↓ Download Synthetic Data
+    </a>
+    <button
+            class="secondary"
+            onclick="copyHotelDataLink()"
+    >
+      🔗 Copy Shared File Link
+    </button>
+  </div>
+
+  <div class="prompt-box">
+    <strong>Live demo prompt</strong>
+    <pre id="p4">Analyze this synthetic financial snapshot for a fictional hotel group. Calculate revenue growth, operating-cost growth, operating margin for both years, and changes in receivables and cash. Identify the three most important management signals. For each signal, cite the numbers supporting it and provide one question management should ask. Clearly separate facts from interpretations.</pre>
+    <button class="copy-btn" onclick="copyText('p4')">Copy prompt</button>
+    <button class="tool-btn" onclick="openGemini('p4')">Open Gemini</button>
+  </div>
+<!--  <div class="exercise"><div class="practice-title">Interactive exercise</div>Have attendees predict the key signals before running the prompt. After the AI response, ask: Which conclusion is supported by numbers, and which requires more evidence?</div>-->
+<!--  <div class="notes"><strong>Facilitator notes</strong>Do not let AI invent causes such as occupancy, pricing or labor changes unless those data are supplied. Keep facts, interpretations and hypotheses visibly separate.</div>-->
+</div>
+</section>
+
+<section class="slide">
+<div class="slide-inner">
+  <div class="slide-number">05 / 10</div>
+  <div class="kicker">03 · Trends &amp; Variances</div>
+  <h2>Trend &amp; Variance Analysis</h2>
+  <div class="columns">
+    <div>
+      <p class="overview">AI can rapidly scan periods, compare actuals with budgets, and surface where management attention is most needed.</p>
+      <ul>
+        <li>Trend analysis: direction and rate of change over time</li>
+        <li>Variance analysis: actual versus budget, prior period or forecast</li>
+        <li>Materiality: prioritize differences that matter</li>
+        <li>Root-cause questions: investigate drivers rather than accept AI explanations</li>
+      </ul>
+      <div class="takeaway">The goal is not to find every variance; it is to find the variances worth explaining.</div>
+    </div>
+    <div>
+      <div class="placeholder"><img src="images/session3_trends.jpg" alt="Trends"></div>
+    </div>
+  </div>
+<!--  <div class="notes"><strong>Facilitator notes</strong>Emphasize materiality. A very large percentage variance on a small line may matter less than a smaller percentage variance on a major cost or revenue line.</div>-->
+</div>
+</section>
+
+<section class="slide">
+<div class="slide-inner">
+  <div class="slide-number">06 / 10</div>
+  <div class="kicker">Practical</div>
+  <h2>Find the Variances That Matter</h2>
+  <div class="data-box"><strong>Synthetic budget-versus-actual data</strong><pre>Line Item | Budget | Actual
+Room Revenue | 2,400,000 | 2,610,000
+Food & Beverage | 720,000 | 655,000
+Payroll | 1,050,000 | 1,190,000
+Utilities | 210,000 | 278,000
+Marketing | 180,000 | 205,000</pre>
+  </div>
+
+  <div class="demo-row">
+    <a
+            href="https://drive.google.com/uc?export=download&id=1VQ7miRPq0hoGEI6298AFL2BX_tWUMqcr"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="primary"
+            style="text-decoration:none;display:inline-block;"
+    >
+      ↓ Download Synthetic Data
+    </a>
+    <button
+            class="secondary"
+            onclick="copyTrendDataLink()"
+    >
+      🔗 Copy Shared File Link
+    </button>
+  </div>
+
+  <div class="prompt-box">
+    <strong>Live demo prompt</strong>
+    <pre id="p6">Using this synthetic budget-versus-actual table, calculate the absolute and percentage variance for every line. Rank the variances by management significance, not simply by percentage. Identify two favorable and two unfavorable variances. For each major variance, give one evidence-based management question. Do not assume causes that are not in the data.</pre>
+    <button class="copy-btn" onclick="copyText('p6')">Copy prompt</button>
+    <button class="tool-btn" onclick="openGemini('p6')">Open Gemini</button>
+  </div>
+<!--  <div class="exercise"><div class="practice-title">Interactive exercise</div>Ask participants to identify two variances they would put on an executive dashboard. Compare their choices with the AI response and discuss why materiality matters.</div>-->
+<!--  <div class="notes"><strong>Facilitator notes</strong>Make the distinction between percentage variance and absolute financial impact explicit. Ask whether “largest percentage” always means “most important.”</div>-->
+</div>
+</section>
+
+<section class="slide">
+<div class="slide-inner">
+  <div class="slide-number">07 / 10</div>
+  <div class="kicker">04 · Data Visualization</div>
+  <h2>Data Visualization for Executives</h2>
+  <div class="columns">
+    <div>
+      <p class="overview">Turn analysis into visuals that help leaders see the message quickly and ask better questions.</p>
+      <ul>
+        <li>Choose charts based on the decision, not decoration</li>
+        <li>Use trends for movement over time</li>
+        <li>Use bars for comparisons and variances</li>
+        <li>Annotate the few numbers executives need to notice</li>
+        <li>Keep charts simple enough to explain in 30 seconds</li>
+      </ul>
+      <div class="takeaway">A good executive chart answers one important question at a glance.</div>
+    </div>
+    <div>
+      <div class="placeholder"><img src="images/session3_visualization.jpg" alt="Data Visualization"></div>
+    </div>
+  </div>
+<!--  <div class="notes"><strong>Facilitator notes</strong>Ask: “What should an executive notice in the first five seconds?” Keep the discussion focused on decision support rather than visual decoration.</div>-->
+</div>
+</section>
+
+<section class="slide">
+<div class="slide-inner">
+  <div class="slide-number">08 / 10</div>
+  <div class="kicker">Practical</div>
+  <h2>Turn Numbers into an Executive Chart</h2>
+  <div class="data-box"><strong>Synthetic monthly performance data</strong><pre>Month | Revenue | Operating Profit
+Jan | 1,920,000 | 520,000
+Feb | 1,980,000 | 505,000
+Mar | 2,120,000 | 570,000
+Apr | 2,260,000 | 610,000
+May | 2,180,000 | 545,000
+Jun | 2,410,000 | 675,000</pre></div>
+
+  <div class="demo-row">
+    <a
+            href="https://drive.google.com/uc?export=download&id=1Ho2DkI5-G3x5_JRpgtIKYVavzvFTqYHO"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="primary"
+            style="text-decoration:none;display:inline-block;"
+    >
+      ↓ Download Synthetic Data
+    </a>
+    <button
+            class="secondary"
+            onclick="copyVizDataLink()"
+    >
+      🔗 Copy Shared File Link
+    </button>
+  </div>
+
+  <div class="prompt-box">
+    <strong>Live demo prompt</strong>
+    <pre id="p8">Using this synthetic monthly data, recommend the best executive visualization for a management meeting. Explain why. Then create a concise chart with title, x-axis, y-axis, series, and the single management message the chart should communicate. Also identify one caution about interpreting the data.</pre>
+    <button class="copy-btn" onclick="copyText('p8')">Copy prompt</button>
+    <button class="tool-btn" onclick="openGemini('p8')">Open Gemini</button>
+  </div>
+
+
+  <div class="prompt-box">
+    <strong>Example 1 — Line Chart: Trend</strong>
+    <pre id="p8a">Create a professional line chart titled “Monthly Revenue Trend” using this data:
+
+Jan $1.92M, Feb $1.98M, Mar $2.12M, Apr $2.26M, May $2.18M, Jun $2.41M.
+
+Clearly label the months and values and highlight the overall trend.</pre>
+
+    <button class="copy-btn" onclick="copyText('p8a')">Copy Prompt</button>
+    <button class="tool-btn" onclick="openGemini('p8a')">Open Gemini</button>
+  </div>
+
+  <div class="prompt-box">
+    <strong>Example 2 — Bar Chart: Comparison</strong>
+    <pre id="p8b">Create a professional bar chart titled “Budget vs Actual Expenses” using:
+
+Payroll — Budget $1.05M, Actual $1.19M
+Utilities — Budget $0.21M, Actual $0.278M
+Marketing — Budget $0.18M, Actual $0.205M
+F&amp;B — Budget $0.72M, Actual $0.655M.
+
+Show Budget and Actual side by side and label the variances.</pre>
+
+    <button class="copy-btn" onclick="copyText('p8b')">Copy Prompt</button>
+    <button class="tool-btn" onclick="openGemini('p8b')">Open Gemini</button>
+  </div>
+
+  <div class="prompt-box">
+    <strong>Example 3 — Pie Chart: Composition</strong>
+    <pre id="p8c">Create a professional pie chart titled “Operating Expense Mix” using:
+
+Payroll 45%, Operations 25%, Utilities 12%, Marketing 10%, Other 8%.
+
+Show each category with its percentage and a clear legend.</pre>
+
+    <button class="copy-btn" onclick="copyText('p8c')">Copy Prompt</button>
+    <button class="tool-btn" onclick="openGemini('p8c')">Open Gemini</button>
+  </div>
+
+
+
+
+<!--  <div class="exercise"><div class="practice-title">Interactive exercise</div>Choose line, bar or another chart type before asking AI. Then build the recommended chart in Excel or Google Sheets.</div>-->
+<!--  <div class="notes"><strong>Facilitator notes</strong>Focus on the decision the chart supports. Ask participants to identify the one message that should be obvious without reading a paragraph.</div>-->
+</div>
+</section>
+
+<section class="slide">
+<div class="slide-inner">
+  <div class="slide-number">09 / 10</div>
+  <div class="kicker">05 · Executive Report</div>
+  <h2>Executive Financial Reporting</h2>
+  <div class="columns">
+    <div>
+      <p class="overview">Use AI to transform verified financial analysis into a concise executive report that highlights performance, risks and actions.</p>
+      <ul>
+        <li>Start with verified numbers and clearly labeled assumptions</li>
+        <li>Structure report around performance, drivers, risks and actions</li>
+        <li>Use AI for synthesis and language—not final approval</li>
+        <li>Make every important claim traceable to a source number</li>
+        <li>End with decisions or questions for management</li>
+      </ul>
+      <div class="takeaway">The executive report is the bridge between financial information and managerial action.</div>
+    </div>
+    <div>
+      <div class="placeholder"><img src="images/session3_executivereporting.png" alt="Executive Reporting"></div>
+    </div>
+  </div>
+<!--  <div class="notes"><strong>Facilitator notes</strong>Position the report as the bridge from analysis to action. Every important claim should be traceable to a verified source number.</div>-->
+</div>
+</section>
+
+<section class="slide">
+<div class="slide-inner">
+  <div class="slide-number">10 / 10</div>
+  <div class="kicker">Practical · Capstone</div>
+  <h2>Build a One-Page Executive Report</h2>
+
+  <div class="prompt-box">
+    <strong>Live demo prompt</strong>
+    <pre id="p10">Act as a senior financial analyst preparing an executive management report.
+
+Using ONLY the verified synthetic figures below, create a concise one-page executive financial report.
+
+VERIFIED FIGURES:
+Revenue: 8,400,000 → 9,450,000
+Operating Profit: 2,520,000 → 2,520,000
+Receivables: 1,050,000 → 1,480,000
+Cash: 1,920,000 → 1,610,000
+Payroll: above budget
+Utilities: above budget
+
+Your report must contain:
+
+1. EXECUTIVE HEADLINE
+Write one concise headline that captures the most important financial message.
+
+2. KEY PERFORMANCE FIGURES
+Calculate and display:
+- Revenue growth %
+- Operating margin for both periods
+- Change in receivables
+- Change in cash
+
+Present these figures in a compact executive KPI table.
+
+3. MANAGEMENT CHART
+Create ONE simple chart that best communicates the most important financial comparison.
+Choose the chart type yourself and explain briefly why it is appropriate.
+Use only the supplied figures.
+
+4. THREE KEY FINDINGS
+For each finding:
+- State the finding
+- Give the supporting figure
+- Explain why management should care
+
+5. TWO FINANCIAL RISKS
+Identify two potential risks supported by the data.
+Clearly distinguish evidence from interpretation.
+
+6. THREE MANAGEMENT ACTIONS
+Suggest three practical actions. Do not invent causes or recommend actions that require information not provided.
+
+7. THREE QUESTIONS FOR FURTHER INVESTIGATION
+Identify questions management should answer before making major decisions.
+
+IMPORTANT RULES:
+- Use ONLY the supplied figures.
+- Do not invent causes, forecasts, assumptions, or additional financial data.
+- Clearly label interpretations as interpretations.
+- Every numerical claim must be traceable to a supplied figure or a calculation from those figures.
+- Keep the report concise and suitable for a senior management meeting.
+- Make the most important message obvious within 30 seconds.
+- Use professional executive language.
+- Separate facts, interpretations, risks, and recommendations.</pre>
+
+    <button class="copy-btn" onclick="copyText('p10')">Copy prompt</button>
+    <button class="tool-btn" onclick="openGemini('p10')">Open Gemini</button>
+  </div>
+
+  <div class="takeaway">Workflow: Data → Analysis → Visualization → Executive Narrative → Human Verification</div>
+  <div class="footer-note">End of Session 3 · Allow remaining time for questions, discussion and participant reflections.</div>
+</div>
+</section>
+
+
+
+
+</main>
+
+<div class="controls">
+  <div class="controls-inner">
+    <div class="progress" id="progress">Slide 1 of 10</div>
+    <div class="nav-buttons">
+      <button id="prevBtn" class="secondary" onclick="changeSlide(-1)">← Previous</button>
+      <button id="nextBtn" class="primary" onclick="changeSlide(1)">Next →</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+const ATTENDEE_CODE = "JUBA26-AI-SESSION3";
+const FACILITATOR_CODE = "JUBA26-FACILITATOR-SESSION3";
+let slideIndex = 0;
+let facilitator = false;
+
+
+const HOTEL_DATA_SHARED_LINK = "https://drive.google.com/file/d/1Dqxsm3wTOrEhDFxeubGgRj1Z7HOueTFj/view?usp=drive_link";
+const TREND_DATA_SHARED_LINK = "https://drive.google.com/file/d/1VQ7miRPq0hoGEI6298AFL2BX_tWUMqcr/view?usp=drive_link";
+const VIZ_DATA_SHARED_LINK = "https://drive.google.com/file/d/1Ho2DkI5-G3x5_JRpgtIKYVavzvFTqYHO/view?usp=sharing";
+const BUDGET_DATA_SHARED_LINK = "https://docs.google.com/document/d/1stMW1CdTw1HVrKYO1JrswcV-V4rsGjYprjCnFgv44zQ/edit?usp=sharing";
+const EXPENSE_DATA_SHARED_LINK = "https://drive.google.com/file/d/1wZAqqiPYM5D5oeKVn-_u6YxERQbPFENm/view?usp=drive_link"
+
+function copyExpenseDataLink() {
+  navigator.clipboard.writeText(EXPENSE_DATA_SHARED_LINK).then(() => {
+    // alert("Shared file link copied to clipboard.");
+  });
+}
+
+function copyHotelDataLink() {
+  navigator.clipboard.writeText(HOTEL_DATA_SHARED_LINK).then(() => {
+    // alert("Shared file link copied to clipboard.");
+  });
+}
+
+function copyTrendDataLink() {
+  navigator.clipboard.writeText(TREND_DATA_SHARED_LINK).then(() => {
+    // alert("Shared file link copied to clipboard.");
+  });
+}
+
+
+function copyVizDataLink() {
+  navigator.clipboard.writeText(VIZ_DATA_SHARED_LINK).then(() => {
+    // alert("Shared file link copied to clipboard.");
+  });
+}
+
+
+function copyBudgetDataLink() {
+  navigator.clipboard.writeText(BUDGET_DATA_SHARED_LINK).then(() => {
+    // alert("Shared file link copied to clipboard.");
+  });
+}
+
+function unlock(){
+  const code=document.getElementById("accessCode").value.trim();
+  const error=document.getElementById("error");
+  if(code===ATTENDEE_CODE || code===FACILITATOR_CODE){
+    facilitator=(code===FACILITATOR_CODE);
+    document.getElementById("gate").classList.add("hidden");
+    document.getElementById("app").classList.remove("hidden");
+    if(facilitator) enableFacilitator();
+    render();
+  }else{
+    error.textContent="Invalid access code. Please check the code and try again.";
+  }
+}
+document.getElementById("accessCode").addEventListener("keydown",e=>{if(e.key==="Enter")unlock()});
+
+function enableFacilitator(){
+  facilitator=true;
+  document.body.classList.add("facilitator");
+  document.getElementById("modeLabel").textContent="Facilitator Mode";
+  document.getElementById("facBtn").textContent="Attendee Mode";
+}
+function toggleFacilitator(){
+  if(!facilitator){
+    const code=prompt("Enter facilitator code:");
+    if(code===FACILITATOR_CODE){enableFacilitator();render();}
+    else if(code!==null) alert("Invalid facilitator code.");
+  }else{
+    facilitator=false;
+    document.body.classList.remove("facilitator");
+    document.getElementById("modeLabel").textContent="Attendee Mode";
+    document.getElementById("facBtn").textContent="Facilitator Mode";
+    render();
+  }
+}
+function render(){
+  const slides=[...document.querySelectorAll(".slide")];
+  slides.forEach((s,i)=>s.classList.toggle("active",i===slideIndex));
+  document.getElementById("progress").textContent=`Slide ${slideIndex+1} of ${slides.length}`;
+  document.getElementById("prevBtn").style.display=slideIndex===0?"none":"inline-block";
+  document.getElementById("nextBtn").style.display=slideIndex===slides.length-1?"none":"inline-block";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function changeSlide(delta){
+  const slides=[...document.querySelectorAll(".slide")];
+  slideIndex=Math.max(0,Math.min(slides.length-1,slideIndex+delta));
+  render();
+}
+document.addEventListener("keydown",e=>{
+  if(document.getElementById("app").classList.contains("hidden")) return;
+  if(e.key==="ArrowRight" || e.key==="PageDown") changeSlide(1);
+  if(e.key==="ArrowLeft" || e.key==="PageUp") changeSlide(-1);
+});
+function copyText(id){
+  const text=document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(()=>alert("Prompt copied to clipboard."));
+}
+function openGemini(id){
+  const text=document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(()=>{
+    window.open("https://gemini.google.com/","_blank","noopener,noreferrer");
+  });
+}
+render();
+</script>
+</body>
+</html>
