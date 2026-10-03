@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Leadership Masterclass — Session 4</title>
+<style>
+:root{--bg:#f8fafc;--card:#fff;--ink:#1e293b;--muted:#64748b;--accent:#2563eb;--accent2:#0f766e;--line:#e2e8f0;--shadow:0 18px 45px rgba(15,23,42,.10)}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input{font:inherit}.hidden{display:none!important}
+#gate{min-height:100vh;display:grid;place-items:center;padding:24px}.gate-card{width:min(580px,100%);background:#fff;border:1px solid var(--line);border-radius:24px;padding:40px;box-shadow:var(--shadow)}
+.eyebrow,.kicker{font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}h1,h2,h3{line-height:1.08;margin:0}.gate-card h1{font-size:clamp(2rem,6vw,3.5rem);margin:12px 0}.gate-card p{color:var(--muted);line-height:1.65}.gate-row{display:flex;gap:10px;margin-top:24px}.gate-row input{flex:1;border:1px solid var(--line);border-radius:12px;padding:13px 14px;outline:none}.gate-row input:focus{border-color:var(--accent)}
+.primary,.secondary,.tool-btn,.copy-btn{border:0;border-radius:11px;padding:11px 15px;cursor:pointer;font-weight:750}.primary{background:var(--ink);color:#fff}.secondary{background:#eef2f7;color:var(--ink)}.tool-btn{background:#dbeafe;color:#1d4ed8}.copy-btn{background:#ecfeff;color:#0f766e}.error{color:#b91c1c;font-size:.9rem;margin-top:10px}
+#app{min-height:100vh}.topbar{position:sticky;top:0;z-index:20;background:rgba(248,250,252,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.topbar-inner{width:min(1180px,calc(100% - 44px));margin:auto;min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-weight:850}.brand small{display:block;color:var(--muted);font-weight:600;font-size:.72rem;margin-top:2px}.top-actions{display:flex;gap:8px;align-items:center}.mode{font-size:.78rem;font-weight:800;padding:7px 10px;border-radius:999px;background:#e2e8f0}
+main{width:min(1180px,calc(100% - 44px));margin:0 auto;padding:34px 0 110px}.slide{display:none;min-height:calc(100vh - 180px);align-items:center}.slide.active{display:flex}.slide-inner{width:100%;background:var(--card);border:1px solid var(--line);border-radius:28px;padding:clamp(26px,5vw,62px);box-shadow:var(--shadow)}.slide-number{color:var(--muted);font-weight:800;font-size:.85rem;margin-bottom:22px}.slide h2{font-size:clamp(2rem,5vw,3rem);max-width:1000px;margin:10px 0 22px}.overview{font-size:clamp(1.05rem,2vw,1.3rem);line-height:1.6;max-width:900px;color:#334155}.columns{display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:start}ul{padding-left:1.2rem;line-height:1.72}.takeaway{margin-top:24px;border-left:4px solid var(--accent);padding:15px 18px;background:#f1f5f9;border-radius:0 12px 12px 0;font-weight:750}
+.prompt-box,.data-box,.notes{margin-top:24px;border:1px solid var(--line);border-radius:16px;padding:18px;background:#f8fafc}.prompt-box strong,.data-box strong,.notes strong{display:block;margin-bottom:9px}pre{white-space:pre-wrap;overflow:auto;margin:0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.87rem;line-height:1.55}.data-box{background:#fff}.demo-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}.notes{display:none;background:#fffbeb;border-color:#fde68a}.facilitator .notes{display:block}.placeholder{width:100%;min-height:190px;border:2px dashed #cbd5e1;border-radius:6px;display:grid;place-items:center;color:#94a3b8;text-align:center;margin-top:24px}.placeholder img{display:block;width:100%;max-width:100%;height:auto}.exercise{margin-top:24px;padding:18px;border-radius:16px;background:#f0fdfa;border:1px solid #ccfbf1}.practice-title{font-size:1rem;font-weight:850;margin-bottom:8px}.footer-note{color:var(--muted);font-size:.82rem;margin-top:18px}.controls{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.96);border-top:1px solid var(--line)}.controls-inner{width:min(1180px,calc(100% - 44px));margin:auto;min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:12px}.progress{font-size:.82rem;color:var(--muted);font-weight:750}.nav-buttons{display:flex;gap:8px}.nav-buttons button:disabled{opacity:.35;cursor:not-allowed}
+.table-wrap{overflow:auto;margin-top:16px;border:1px solid var(--line);border-radius:12px}.mini-table{width:100%;border-collapse:collapse;min-width:620px}.mini-table th,.mini-table td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left}.mini-table th{background:#f1f5f9;font-size:.82rem}.mini-table td{font-size:.9rem}.artifact{background:#eff6ff;border:1px solid #bfdbfe;border-radius:16px;padding:18px;margin-top:22px}.artifact h3{font-size:1rem;margin-bottom:8px}
+@media(max-width:800px){.columns{grid-template-columns:1fr}.topbar-inner{align-items:flex-start;padding:12px 0}.brand small{display:none}.slide-inner{border-radius:20px}.slide{min-height:auto}.gate-row{flex-direction:column}}
+</style>
+</head>
+<body>
+<section id="gate">
+  <div class="gate-card">
+    <div class="eyebrow">AI Leadership Masterclass · Session 4</div>
+    <h1>AI for Strategy, Risk &amp; Organizational Leadership</h1>
+    <p>Move from individual productivity to organizational leadership through strategy, scenario planning, risk assessment and governance.</p>
+    <div class="gate-row">
+      <input id="accessCode" type="password" placeholder="Enter access code" autocomplete="off">
+      <button class="primary" onclick="unlock()">Enter Session</button>
+    </div>
+    <div id="error" class="error"></div>
+    <p class="footer-note">Enter the access code provided for your role.</p>
+  </div>
+</section>
+
+<div id="app" class="hidden">
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">AI Leadership Masterclass <small>Session 4 · Strategy, Risk &amp; Organizational Leadership</small></div>
+    <div class="top-actions"><span id="modeBadge" class="mode">Attendee Mode</span><button id="facBtn" class="secondary hidden" onclick="toggleFacilitator()">Facilitator Mode</button></div>
+  </div>
+</header>
+
+<main>
+<!-- 1 -->
+<section class="slide active" data-slide="1">
+  <div class="slide-inner">
+  <div class="slide-number">01 / 10 · STRATEGIC AI SPARRING</div><div class="kicker">01 · FROM USER TO STRATEGIC LEADER</div>
+  <h2>AI as a Strategic Sparring Partner</h2>
+  <div class="columnas"><div>
+    <p class="overview">The leadership shift is from asking AI to <strong>do tasks</strong> to asking AI to <strong>challenge decisions</strong>. A strong strategic prompt makes assumptions visible, tests alternatives and exposes questions a leadership team may be missing.</p>
+    <ul><li>Frame the decision, not just the task.</li><li>Ask AI to challenge assumptions and identify blind spots.</li><li>Generate alternatives before choosing a direction.</li><li>Separate evidence, assumptions, risks and judgment.</li></ul>
+    <div class="takeaway"><strong>Leadership principle:</strong> Use AI to widen the quality of the conversation—not to outsource the decision.</div>
+  </div><div>
+    <div class="placeholder"><img src="images/session4_sparingpartner.jpeg" alt="Sketchnote placeholder: AI strategic sparring conversation"></div>
+  </div></div>
+  <div class="notes"><strong>Facilitator notes</strong><br>Open by connecting this session to Sessions 1–3: attendees have learned to use AI for productivity, documents and data. The capstone question is: “What changes when AI becomes part of how a leadership team thinks?” Emphasize that strategic sparring is not prediction and not automated decision-making.</div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="slide" data-slide="2"><div class="slide-inner">
+  <div class="slide-number">02 / 10 · PRACTICAL ARTIFACT</div><div class="kicker">STRATEGIC AI SPARRING</div><h2>Run a Strategic Challenge Session with AI</h2>
+  <div class="columnsa"><div>
+    <p class="overview">Give AI a real strategic decision, then deliberately ask it to argue from multiple perspectives before you form a conclusion.</p>
+    <div class="prompt-box"><strong>Live demo prompt</strong><pre id="p2">Act as a strategic sparring partner for a senior leadership team.
+
+We are considering whether a fictional organization should launch a digital customer-service platform within the next 12 months.
+
+Challenge this decision from five perspectives:
+1. Strategic value
+2. Financial implications
+3. Customer impact
+4. Operational capability
+5. Major risks
+
+Then provide:
+- 3 assumptions we may be making
+- 3 arguments FOR the initiative
+- 3 arguments AGAINST it
+- 3 questions we must answer before deciding
+- 2 alternative strategies we should consider
+
+Clearly separate facts, assumptions, hypotheses and strategic judgment. Do not invent organizational data.</pre><div class="demo-row"><button class="copy-btn" onclick="copyText('p2')">Copy Prompt</button><button class="tool-btn" onclick="openGemini('p2')">Open Gemini</button></div></div>
+  </div><div>
+    <div class="artifact"><h3>Output participants should capture</h3>Decision → assumptions → arguments → alternatives → unanswered questions.</div>
+  </div></div>
+</div></section>
+
+<!-- 3 -->
+<section class="slide" data-slide="3"><div class="slide-inner">
+  <div class="slide-number">03 / 10 · SCENARIO PLANNING</div><div class="kicker">02 · PLAN FOR UNCERTAINTY</div><h2>Scenario Planning with AI</h2>
+  <div class="columnsa"><div>
+    <p class="overview">Strategy becomes stronger when leaders prepare for several plausible futures instead of building one plan around one forecast.</p>
+    <ul><li>Identify forces that could materially change the environment.</li><li>Separate predictable trends from genuine uncertainty.</li><li>Build a small number of plausible scenarios.</li><li>Identify signals that would indicate which scenario is emerging.</li><li>Prepare actions that work across multiple futures.</li></ul>
+    <div class="takeaway"><strong>Leadership principle:</strong> Scenario planning is not predicting the future; it is preparing the organization to respond intelligently when conditions change.</div>
+  </div><div>
+    <div class="placeholder"><img src="images/session4_scenarioplanning.jpeg" alt="Sketchnote placeholder: scenario planning matrix"></div>
+  </div></div>
+</div></section>
+
+<!-- 4 -->
+<section class="slide" data-slide="4"><div class="slide-inner">
+  <div class="slide-number">04 / 10 · PRACTICAL ARTIFACT</div><div class="kicker">SCENARIO PLANNING</div><h2>Build a Three-Scenario Strategy Map</h2>
+  <div class="acolumns"><div>
+<!--    <div class="data-box"><strong>Fictional organization: regional service company</strong><div class="table-wrap"><table class="mini-table"><tr><th>Uncertainty</th><th>Low condition</th><th>High condition</th></tr><tr><td>Customer demand</td><td>Slow growth</td><td>Rapid growth</td></tr><tr><td>Technology adoption</td><td>Slow adoption</td><td>Fast adoption</td></tr></table></div></div>-->
+<!--    <div class="prompt-box"><strong>Live demo prompt</strong><pre id="p4">Using the two uncertainties below, build three plausible strategic scenarios for a fictional regional service company.-->
+
+<!--Uncertainty 1: Customer demand — slow growth vs rapid growth-->
+<!--Uncertainty 2: Technology adoption — slow vs fast-->
+
+<!--For each scenario provide:-->
+<!-- - Scenario name-->
+<!-- - What the environment looks like-->
+<!-- - Main opportunities-->
+<!-- - Main threats-->
+<!-- - 2 early-warning signals-->
+<!-- - 3 actions leadership should prepare-->
+
+<!--Then identify 2 “no-regret” actions that would make sense across all three scenarios.-->
+<!--Do not predict which scenario will occur.</pre><div class="demo-row"><button class="copy-btn" onclick="copyText('p4')">Copy Prompt</button><button class="tool-btn" onclick="openGemini('p4')">Open Gemini</button></div></div>-->
+<!--  </div>-->
+    <div class="prompt-box">
+      <strong>Live demo — Build a Simple Scenario Plan</strong>
+
+      <pre id="p4">Act as my strategic planning partner.
+
+I am a senior manager at a university preparing for the next 12–24 months.
+
+ORGANIZATION:
+A mid-sized university that provides undergraduate and graduate education, professional training, and online learning programs.
+
+CURRENT SITUATION:
+Student demand for online and digitally supported learning is increasing, but the university is facing budget constraints, rising operating costs, and limited technology resources. Management needs to decide how much to invest in digital learning while protecting financial sustainability and maintaining educational quality.
+
+Create three simple scenarios:
+
+1. EXPECTED — Current trends continue.
+2. UPSIDE — Demand for digital learning grows significantly and additional resources become available.
+3. DOWNSIDE — Budget pressures increase while technology and operating costs continue to rise.
+
+For each scenario, provide:
+
+- A short description of what could happen
+- The likely impact on the university
+- 2 early warning signs management should monitor
+- 2 actions the university could take now to prepare
+- 1 key strategic question management should discuss
+
+Present the results in a simple table that an executive team could review in a management meeting.
+
+Then identify:
+
+1. THREE "NO-REGRET" ACTIONS — actions that would be useful across all three scenarios.
+2. TWO KEY INDICATORS — measures management should monitor regularly to determine which scenario may be emerging.
+3. ONE DECISION POINT — explain what future development would cause management to reconsider its current strategy.
+
+IMPORTANT:
+- Do not predict which scenario will happen.
+- Do not assume that the upside or downside scenario will occur.
+- Clearly distinguish facts given in the situation from assumptions about possible futures.
+- Keep the recommendations practical and within the control of university management.
+- Use concise executive language.
+- The purpose is to help management prepare for several plausible futures, not to predict the future.</pre>
+
+      <button class="copy-btn" onclick="copyText('p4')">Copy Prompt</button> <button class="tool-btn" onclick="openGemini('p4')">Open Gemini</button>
+
+    </div>
+
+    <div>
+    <div class="artifact"><h3>Output</h3>Three plausible futures + early-warning signals + no-regret actions.</div>
+  </div></div>
+</div></section>
+
+<!-- 5 -->
+<section class="slide" data-slide="5"><div class="slide-inner">
+  <div class="slide-number">05 / 10 · RISK ASSESSMENT</div><div class="kicker">03 · MANAGE AI RISK</div><h2>AI Risk Assessment: Beyond the Technology</h2>
+  <div class="columnsa"><div>
+    <p class="overview">AI risk is not only about model accuracy. Leaders must consider what can go wrong across data, people, processes, technology, compliance and reputation.</p>
+    <ul><li><strong>Data:</strong> sensitive, inaccurate or unauthorized information.</li><li><strong>Model:</strong> hallucination, bias, weak reasoning or unreliable output.</li><li><strong>Process:</strong> AI output enters a workflow without adequate review.</li><li><strong>People:</strong> over-reliance, unclear accountability or poor skills.</li><li><strong>Organization:</strong> regulatory, financial, operational or reputational exposure.</li></ul>
+    <div class="takeaway"><strong>Leadership principle:</strong> A risk is not “AI is risky.” A useful risk statement identifies the event, impact, likelihood and control.</div>
+  </div>
+    <div>
+    <div class="placeholder"><img src="images/session4_riskassessment.jpeg" alt="Sketchnote placeholder: AI risk landscape"></div>
+  </div></div>
+</div></section>
+
+<!-- 6 -->
+<section class="slide" data-slide="6"><div class="slide-inner">
+  <div class="slide-number">06 / 10 · PRACTICAL ARTIFACT</div><div class="kicker">RISK ASSESSMENT</div><h2>Turn an AI Use Case into a Risk Register</h2>
+  <div class="columnsa"><div>
+    <div class="prompt-box"><strong>Live demo prompt</strong><pre id="p6">Create a practical AI risk register for this fictional use case:
+
+Use case: Managers use a generative AI assistant to draft internal reports and summarize operational documents.
+
+Identify 6 material risks. For each risk provide:
+- Risk statement
+- Likelihood: Low / Medium / High
+- Impact: Low / Medium / High
+- Why it could happen
+- Preventive control
+- Human review requirement
+- Owner role
+
+Prioritize the risks by management attention. Do not invent laws or regulations. Clearly distinguish the risk itself from the proposed control.</pre><div class="demo-row"><button class="copy-btn" onclick="copyText('p6')">Copy Prompt</button><button class="tool-btn" onclick="openGemini('p6')">Open Gemini</button></div></div>
+  </div><div>
+    <div class="artifact"><h3>Simple risk logic</h3><p><strong>Risk → Likelihood → Impact → Control → Human review → Owner</strong></p><p>This turns a vague concern into something management can govern.</p></div>
+    <div class="exercise"><div class="practice-title">Challenge question</div>Which risk would you refuse to manage solely through a written policy? What process control or human checkpoint would you add?</div>
+  </div></div>
+  <div class="notes"><strong>Facilitator notes</strong><br>Emphasize that risk registers are living management tools. The owner is critical: a risk without an accountable owner is difficult to manage. Avoid presenting AI-generated risk ratings as objective truth; leadership must calibrate them.</div>
+</div></section>
+
+<!-- 7 -->
+<section class="slide" data-slide="7"><div class="slide-inner">
+  <div class="slide-number">07 / 10 · AI GOVERNANCE</div><div class="kicker">04 · GOVERN THE SYSTEM</div><h2>AI Governance: From Rules to Responsible Practice</h2>
+  <div class="columnsa"><div>
+    <p class="overview">Governance answers a leadership question: <strong>How will our organization use AI safely, consistently and accountably?</strong></p>
+    <ul><li><strong>Purpose:</strong> What AI uses are encouraged, restricted or prohibited?</li><li><strong>Data:</strong> What information may be entered into which tools?</li><li><strong>Accountability:</strong> Who owns the use case and final decision?</li><li><strong>Verification:</strong> When is human review mandatory?</li><li><strong>Monitoring:</strong> How will we detect failures, incidents and drift?</li><li><strong>Capability:</strong> How will employees learn responsible AI practices?</li></ul>
+    <div class="takeaway"><strong>Leadership principle:</strong> Governance should enable useful AI while making accountability, data boundaries and human oversight explicit.</div>
+  </div><div>
+    <div class="placeholder"><img src="images/session4_governance.jpeg" alt="Sketchnote placeholder: AI governance framework"></div>
+  </div></div>
+</div></section>
+
+<!-- 8 -->
+<section class="slide" data-slide="8"><div class="slide-inner">
+  <div class="slide-number">08 / 10 · PRACTICAL ARTIFACT</div><div class="kicker">AI GOVERNANCE</div><h2>Draft a One-Page AI Governance Framework</h2>
+  <div class="columnsa"><div>
+    <div class="prompt-box"><strong>Live demo prompt</strong><pre id="p8">Draft a one-page practical AI governance framework for a mid-sized organization beginning to use generative AI.
+
+Structure it under these headings:
+1. Approved uses
+2. Restricted uses
+3. Prohibited uses
+4. Data and confidentiality rules
+5. Human verification requirements
+6. Accountability and approval roles
+7. Incident reporting
+8. Employee training
+9. Quarterly review and monitoring
+
+Keep the framework practical and easy for managers to implement. Do not cite or invent specific laws. Clearly label any item that should be customized to the organization’s legal or regulatory environment.</pre><div class="demo-row"><button class="copy-btn" onclick="copyText('p8')">Copy Prompt</button><button class="tool-btn" onclick="openGemini('p8')">Open Gemini</button></div></div>
+  </div><div>
+    <div class="exercise"><div class="practice-title">Governance design test</div>Ask participants to review the AI draft using three questions: <strong>Can employees understand it? Can managers enforce it? Does it make accountability clear?</strong></div>
+    <div class="artifact"><h3>Capstone governance test</h3>Every AI use case should have a purpose, permitted data boundary, accountable owner, verification level and escalation path.</div>
+  </div></div>
+  <div class="notes"><strong>Facilitator notes</strong><br>Invite participants to identify one rule that is too vague to enforce. This is where governance becomes practical: “Use AI responsibly” is not an operational control; a clear data boundary or mandatory review step is.</div>
+</div></section>
+
+<!-- 9 -->
+<section class="slide" data-slide="9"><div class="slide-inner">
+  <div class="slide-number">09 / 10 · LEADERSHIP ACTION</div><div class="kicker">05 · FROM LEARNING TO IMPLEMENTATION</div><h2>Your 30-Day AI Leadership Action Plan</h2>
+  <div class="columnsa"><div>
+    <p class="overview">The masterclass becomes valuable when participants leave with one focused change they will actually implement.</p>
+    <ul><li><strong>Days 1–7 — Diagnose:</strong> choose one high-value AI opportunity and define the problem.</li><li><strong>Days 8–14 — Pilot:</strong> test one workflow with synthetic or appropriately governed data.</li><li><strong>Days 15–21 — Control:</strong> define verification, risk controls and success measures.</li><li><strong>Days 22–30 — Scale or stop:</strong> review evidence, document lessons and decide the next step.</li></ul>
+    <div class="takeaway"><strong>Leadership principle:</strong> Start with one meaningful use case, learn quickly, control the risks and build evidence before scaling.</div>
+  </div><div>
+    <div class="placeholder"><img src="images/session4_actionplan.jpeg" alt="Sketchnote placeholder: 30-day AI leadership action plan"></div>
+  </div></div>
+</div></section>
+
+<!-- 10 -->
+<section class="slide" data-slide="10"><div class="slide-inner">
+  <div class="slide-number">10 / 10 · FINAL CAPSTONE</div><div class="kicker">30-DAY LEADERSHIP COMMITMENT</div><h2>Turn the Masterclass into an Organizational Experiment</h2>
+  <div class="columns"><div>
+    <div class="prompt-box"><strong>Final AI coaching prompt</strong><pre id="p10">Act as an AI leadership coach.
+
+Help me create a 30-day AI leadership action plan for my organization.
+
+My chosen AI opportunity is: [describe the opportunity]
+The business problem is: [describe the problem]
+The people affected are: [describe the users]
+The main risk I am concerned about is: [describe the risk]
+
+Create a practical plan with:
+- One measurable 30-day objective
+- A Week 1 diagnostic
+- A Week 2 pilot
+- A Week 3 risk and governance check
+- A Week 4 review and scale/stop decision
+- One success metric
+- One risk metric
+- One accountable owner role
+- Three questions I should ask leadership before proceeding
+
+Challenge my assumptions rather than simply agreeing with me. Clearly distinguish facts, assumptions and recommendations.</pre><div class="demo-row"><button class="copy-btn" onclick="copyText('p10')">Copy Prompt</button><button class="tool-btn" onclick="openGemini('p10')">Open Gemini</button></div></div>
+  </div><div>
+    <div class="artifact"><h3>Final reflection</h3><p><strong>What will you do differently on Monday?</strong></p><p>1. One AI opportunity I will pursue: __________</p><p>2. One risk/control I will address: __________</p><p>3. One leadership conversation I will start: __________</p></div>
+  </div></div>
+</div></section>
+</main>
+
+<div class="controls"><div class="controls-inner"><div class="progress" id="progress">Slide 1 of 10</div><div class="nav-buttons"><button id="prevBtn" class="secondary" onclick="prevSlide()">← Previous</button><button id="nextBtn" class="primary" onclick="nextSlide()">Next →</button></div></div></div>
+</div>
+
+<script>
+const ATTENDEE_CODE='JUBA26-AI-SESSION4';
+const FACILITATOR_CODE='JUBA26-FACILITATOR-SESSION4';
+let slideIndex=1, facilitator=false;
+function unlock(){
+  const code=document.getElementById('accessCode').value.trim();
+  if(code===ATTENDEE_CODE || code===FACILITATOR_CODE){
+    facilitator=code===FACILITATOR_CODE;
+    document.getElementById('gate').classList.add('hidden');
+    document.getElementById('app').classList.remove('hidden');
+    if(facilitator){document.body.classList.add('facilitator');document.getElementById('facBtn').classList.remove('hidden');document.getElementById('modeBadge').textContent='Facilitator Mode';}
+    showSlide(1);
+  }else document.getElementById('error').textContent='Invalid access code. Please check the code and try again.';
+}
+function showSlide(n){
+  const slides=[...document.querySelectorAll('.slide')];
+  slideIndex=Math.max(1,Math.min(n,slides.length));
+  slides.forEach((s,i)=>s.classList.toggle('active',i===slideIndex-1));
+  document.getElementById('progress').textContent=`Slide ${slideIndex} of ${slides.length}`;
+  document.getElementById('prevBtn').style.visibility=slideIndex===1?'hidden':'visible';
+  document.getElementById('nextBtn').style.visibility=slideIndex===slides.length?'hidden':'visible';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function nextSlide(){showSlide(slideIndex+1)} function prevSlide(){showSlide(slideIndex-1)}
+function toggleFacilitator(){facilitator=!facilitator;document.body.classList.toggle('facilitator',facilitator);document.getElementById('modeBadge').textContent=facilitator?'Facilitator Mode':'Attendee Mode';document.getElementById('facBtn').textContent=facilitator?'Hide Facilitator Notes':'Facilitator Mode'}
+function copyText(id){const text=document.getElementById(id).innerText;navigator.clipboard.writeText(text).then(()=>alert('Prompt copied to clipboard.')).catch(()=>alert('Copy failed. Please select and copy the prompt manually.'))}
+function openGemini(id){const text=document.getElementById(id).innerText;const url='https://gemini.google.com/app';navigator.clipboard.writeText(text).then(()=>{window.open(url,'_blank','noopener,noreferrer');alert('Prompt copied. Paste it into Gemini.');}).catch(()=>window.open(url,'_blank','noopener,noreferrer'))}
+document.getElementById('accessCode').addEventListener('keydown',e=>{if(e.key==='Enter')unlock()});
+document.addEventListener('keydown',e=>{if(document.getElementById('app').classList.contains('hidden'))return;if(e.key==='ArrowRight')nextSlide();if(e.key==='ArrowLeft')prevSlide()});
+</script>
+</body>
+</html>
